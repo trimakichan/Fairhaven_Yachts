@@ -1,0 +1,40 @@
+@use '../abstracts/variables' as *;
+
+
+@mixin sm {
+    @media (max-width: 738px) {
+        @content;
+    }
+}
+
+
+@mixin md {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (max-width: 1366px) {
+        @content;
+    }
+}
+
+@mixin hoverEffect {
+    content: '';
+    background: rgba($color-accent-gold, 1);
+    position: absolute;
+    left: 0;
+    bottom: -.3rem;
+    height: 2px;
+}
+
+@mixin buttonStyle ($bgColor, $textColor) {
+    // width: 80px;
+    // height: 40px;
+    padding: .5rem .8rem;
+    font-size: 1rem;
+    color: $textColor;
+    border: 1px solid $color-text-primary;
+    background-color: $bgColor;
+}
