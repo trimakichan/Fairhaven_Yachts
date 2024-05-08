@@ -3,14 +3,14 @@
 
 .navbar {
     width: 100%;
-    min-height: 60px;
+    height: 80px;
     position: fixed;
     padding: .5rem 6rem;
     color: $color-text-secondary;
     background-color: $color-background-navy;
     border-bottom: 3px solid $color-primary;
 
-    @include sm {
+    @include md {
         padding: .5rem 2.5rem;
     }
 
@@ -54,7 +54,7 @@
                     width: 100%;
                 }
 
-                @include sm {
+                @include md {
                     display: none;
                 }
             }
@@ -70,13 +70,13 @@
                     height: 35px;
                 }
 
-                @include sm {
+                @include md {
                     display: inline;
                     opacity: 1;
                 }
 
                 &.inactive {
-                    @include sm {
+                    @include md {
                         opacity: 0;
                     }
                 }
@@ -97,9 +97,28 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 5rem;
+                gap: 3rem;
 
-                @include sm {
+                .closeIcon {
+                    margin: 0 2rem;
+                    align-self: flex-start;
+                    width: 30px;
+                    height: 30px;
+                }
+
+                .logoLink {
+                    &:hover::before {
+                        width: 0;
+                    }
+
+                    img {
+                        width: 80px;
+                    }
+                }
+
+
+
+                @include md {
                     a {
                         display: inline;
                     }

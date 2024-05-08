@@ -1,0 +1,43 @@
+@use '../../sass/abstracts' as *;
+
+.homePage {
+
+    &__hero {
+        padding: 5rem 2rem;
+        height: calc(100svh - 80px);
+        background: url('/home1.jpg') no-repeat;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+
+        @include sm {
+            background-position: 41%;
+        }
+
+        .context {
+            color: $color-text-secondary;
+
+            .spanText {
+                font-size: clamp(1.7rem, 3vw + 1rem, 3rem);
+            }
+
+            .buttons {
+                margin-top: 2rem;
+                display: flex;
+                gap: 1.5rem;
+
+                button {
+                    @include buttonStyle($color-accent-gold, $color-text-secondary, $color-primary)
+                }
+
+                button:nth-child(2) {
+                    @include buttonStyle($color-primary-transparent, $color-text-secondary, $color-primary)
+                }
+            }
+        }
+
+
+
+    }
+}

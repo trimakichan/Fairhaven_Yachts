@@ -1,37 +1,38 @@
-@use '../abstracts/mixins' as mixins;
-
-// $font-size-extra-small: 0.85rem;
-// $font-size-small: 1rem;
-// $font-size-medium: 1.25rem;
-// $font-size-large: 3.5rem;
-
-// $font-size-mobile-extra-small: 0.75rem;
-// $font-size-mobile-small: 0.875rem;
-// $font-size-mobile-medium: 1rem;
-// $font-size-mobile-large: 3rem;
-
-
-// body {
-//     font-size: $font-size-medium;
-//     line-height: 1.4;
-
-//         @include mixins.sm {
-//             font-size: $font-size-mobile-medium;
-//             line-height: 1.3;
-//         }
-// }
+@use '../abstracts/mixins' as *;
 
 $font-family-primary: "Playfair Display", serif;
 $font-family-secondary: "Roboto",
-sans-serif;
+    sans-serif;
 $font-family-pretitle: "Jost",
-sans-serif;
+    sans-serif;
+$font-family-hero: "Playfair Display SC",
+    serif;
+
+$font-family-cursive: "Tangerine",
+ cursive;
 
 //Font Family 
 
+.heroHeadingText {
+    font-family: $font-family-hero;
+    // font-size: 4rem;
+    font-size: clamp(2rem, 3vw + 1rem, 4rem);
+}
+
+.heroParagraph {
+    font-family: $font-family-pretitle;
+    font-size: clamp(1.2rem, 3vw + .5rem, 1.7rem);
+}
+
+.heroPreheading  {
+    font-family: $font-family-cursive;
+    font-size: clamp(2rem, 3vw + 1rem, 4rem);
+}
+
 body {
     font-family: $font-family-secondary;
-   
+    font-size: 1rem;
+    // line-height: 1.5;
 }
 
 nav {
@@ -39,26 +40,10 @@ nav {
     font-size: 1.15rem;
 }
 
+
 h1,
 h2 {
     font-family: $font-family-primary;
-}
-
-button {
-    font-family: $font-family-pretitle;
-}
-
-/* Base HTML font size */
-html {
-    font-size: 100%;
-    /* Equals 16px in most browsers */
-}
-
-/* Typography for Desktop */
-body {
-    font-size: 1rem;
-    /* Base font size for body text, equals 16px */
-    line-height: 1.5;
 }
 
 h1 {
@@ -69,58 +54,40 @@ h2 {
     font-size: 2.5rem;
 }
 
-h3 {
-    font-size: 1.6875rem;
-    /* 27px */
+p {
+    font-family: $font-family-secondary;
 }
 
-h4 {
-    font-size: 1.375rem;
-    /* 22px */
-}
-
-h5 {
-    font-size: 1.25rem;
-    /* 20px */
-}
-
-h6 {
-    font-size: 1.125rem;
-    /* 18px */
+button {
+    font-family: $font-family-pretitle;
 }
 
 /* Responsive Typography for Mobile */
-@include mixins.sm {
+@include lg {
+
+
+    h1 {
+        font-size: 3rem;
+
+    }
+
+    h2 {
+        font-size: 2rem;
+
+    }
+}
+
+
+@include sm {
+
+
     h1 {
         font-size: 2.5rem;
-    
+
     }
 
     h2 {
         font-size: 1.8rem;
-
     }
 
-    h3 {
-        font-size: 1.375rem;
-        /* 22px */
-    }
-
-    h4 {
-        font-size: 1.125rem;
-        /* 18px */
-    }
-
-    h5 {
-        font-size: 1rem;
-        /* 16px */
-    }
-
-    h6 {
-        font-size: 0.875rem;
-        /* 14px */
-    }
 }
-
-
-
