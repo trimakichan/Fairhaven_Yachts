@@ -29,6 +29,18 @@ $font-family-cursive: "Tangerine",
     font-size: clamp(2rem, 3vw + 1rem, 4rem);
 }
 
+.listingTitle {
+    font-family: $font-family-primary;
+    font-size: clamp(1rem, 3vw + 1rem, 1.7rem);
+    font-weight: bold;
+}
+
+.subtitle {
+    font-family: $font-family-secondary;
+     font-size: clamp(.85rem, 3vw + 1rem, 1.5rem);
+
+}
+
 body {
     font-family: $font-family-secondary;
     font-size: 1rem;
@@ -47,47 +59,20 @@ h2 {
 }
 
 h1 {
-    font-size: 3.5rem;
+     font-size: clamp(2rem, 3vw + 1rem, 3.5rem);
+    
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 3vw + 1rem, 3rem);
 }
 
 p {
     font-family: $font-family-secondary;
+    font-size: clamp(.8rem, 3vw + 1rem, 1.3rem);
 }
 
 button {
     font-family: $font-family-pretitle;
 }
 
-/* Responsive Typography for Mobile */
-@include lg {
-
-
-    h1 {
-        font-size: 3rem;
-
-    }
-
-    h2 {
-        font-size: 2rem;
-
-    }
-}
-
-
-@include sm {
-
-
-    h1 {
-        font-size: 2.5rem;
-
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-
-}
