@@ -10,6 +10,7 @@ import Listings from './screens/Listings';
 import SellYachts from './screens/SellYachts';
 import About from './screens/About'
 import Contact from './screens/Contact'
+import ListingDetails from './screens/ListingDetails';
 
 function App() {
   const router = createBrowserRouter([{
@@ -33,6 +34,10 @@ function App() {
         {
           path: 'contact',
           element: <Contact />
+        },
+        {
+          path: '/:id',
+          element: <ListingDetails />
         }
       ]
   }])

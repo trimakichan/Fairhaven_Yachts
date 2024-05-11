@@ -9,6 +9,7 @@
     color: $color-text-secondary;
     background-color: $color-background-navy;
     border-bottom: 3px solid $color-primary;
+    z-index: 998;
 
     @include md {
         padding: .5rem 2.5rem;
@@ -49,7 +50,8 @@
                     transition: .5s ease-in-out;
                 }
 
-                &:hover::before {
+                &:hover::before,
+                &:focus::before {
                     @include hoverEffect;
                     width: 100%;
                 }
@@ -58,6 +60,7 @@
                     display: none;
                 }
             }
+
 
             .menuIcon {
                 opacity: 0;
@@ -107,7 +110,9 @@
                 }
 
                 .logoLink {
-                    &:hover::before {
+
+                    &:hover::before,
+                    &:focus::before {
                         width: 0;
                     }
 

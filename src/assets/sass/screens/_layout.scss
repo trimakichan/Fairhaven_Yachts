@@ -1,4 +1,4 @@
-
+@use '../abstracts/variables' as *;
 
 .layout {
     // height: 100svh; 
@@ -12,6 +12,7 @@
         margin-top: 80px;
         // padding: 0 2rem;
         background-color: #fff;
+        color: $color-text-primary;
     }
 }
 

@@ -24,7 +24,7 @@ const Navbar = () => {
 
   //if openNav is true and click outside the menu, then openNav to false
   return (
-    <nav className='navbar'>
+    <nav className='navbar textSPlayfair'>
       <div className="navbar__container">
         <div className="logo">
           <a href='/'>
