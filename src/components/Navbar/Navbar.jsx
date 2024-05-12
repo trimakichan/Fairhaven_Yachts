@@ -1,14 +1,36 @@
 /* eslint-disable no-unused-vars */
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import './navbar.scss';
 
 import { CiMenuFries } from "react-icons/ci";
 import { IoCloseOutline } from "react-icons/io5";
 import { NavContext } from '../../contexts/navContext';
 
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+
 
 const Navbar = () => {
   const { openNav, setOpenNav } = useContext(NavContext);
+
+  const { scrollY } = useScroll()
+  const [navHidden, setNavHidden] = useState(false);
+
+  // useEffect(() => {
+  //   const unsub = scrollY.on("change", (latest) => console.log(latest))
+  //   return () => unsub();
+  // }, [scrollY])
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+
+    const previous = scrollY.getPrevious();
+    console.log(latest)
+
+    if (latest > previous && latest > 250) {
+      setNavHidden(true)
+    } else {
+      setNavHidden(false)
+    }
+  })
 
   const navLinks = [
     { href: '/', text: "Home" },
@@ -22,9 +44,17 @@ const Navbar = () => {
     <a href={link.href}  >{link.text}</a>
   )
 
-  //if openNav is true and click outside the menu, then openNav to false
+
   return (
-    <nav className='navbar textSPlayfair'>
+    <motion.nav
+      className='navbar textSPlayfair'
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" }
+      }}
+      animate={navHidden ? 'hidden' : 'visible'}
+      transition={{ duration: .35, ease: 'easeInOut' }}
+    >
       <div className="navbar__container">
         <div className="logo">
           <a href='/'>
@@ -42,7 +72,7 @@ const Navbar = () => {
 
             <IoCloseOutline className='closeIcon' onClick={() => setOpenNav(!openNav)} />
             <a href="/" className='logoLink'>
-              <img src="/logo.webp" alt="Fairhaven Yachts Logo"  />
+              <img src="/logo.webp" alt="Fairhaven Yachts Logo" />
             </a>
             {navLinks.map(link => renderLink(link))}
 
@@ -50,7 +80,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   )
 }
 

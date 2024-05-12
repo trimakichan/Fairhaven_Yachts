@@ -1,8 +1,21 @@
+import { motion } from "framer-motion"
 import AnchorIcon from "../components/AnchorIcon/AnchorIcon";
 import Card from "../components/Card/Card";
 import { listingData } from "../data/dammyData";
 import { Link } from "react-router-dom";
-import Footer from '../components/Footer/Footer'
+
+
+const fadeInAnimationVariants = {
+  initial: {
+    opacity: 0,
+    y: 50
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+  }
+}
+
 
 
 const HomePage = () => {
@@ -10,8 +23,20 @@ const HomePage = () => {
     <main className="homePage">
 
       <div className="homePage__hero">
-        <div className="context">
-          <p className="heroHeadingText"><span className="spanText" >WELCOME TO</span> <br></br>FAIRHAVEN YACHTS</p>
+        <div className="context" >
+          <motion.p
+            className="heroHeadingText"
+            variants={fadeInAnimationVariants}
+            initial="initial"
+            whileInView="animate"
+            transition={{ ease: "anticipate", duration: 1 }}
+            viewport={{
+              once: true,
+            }}
+
+          ><span
+            className="spanText">WELCOME TO</span> <br />
+            FAIRHAVEN YACHTS</motion.p>
           <p className="heroParagraph">Experience the luxury of owning a premium yacht. <br></br>Browse our extensive collection and make your dreams a reality.</p>
           <div className="buttons">
             <button>Explore</button>
@@ -21,10 +46,19 @@ const HomePage = () => {
       </div>
 
       <div className="wrapper">
-        <section className="homePage__intro">
+        <motion.section
+          className="homePage__intro"
+          variants={fadeInAnimationVariants}
+          initial="initial"
+          whileInView="animate"
+          transition={{ ease: "anticipate", duration: 1.5 }}
+          viewport={{
+            once: true,
+          }}
+        >
           <h1 className="title"> Experienced Yacht Brokerage</h1>
           <div className="description subtitle">Welcome to our premier yacht brokerage firm, where we provide exceptional service and expertise in facilitating smooth transactions for yacht owners and buyers. With our extensive network and deep understanding of the industry, we are dedicated to delivering unparalleled results and exceeding your expectations.</div>
-        </section>
+        </motion.section>
       </div>
 
       <section className="homePage__listings">
@@ -49,10 +83,19 @@ const HomePage = () => {
       </section>
 
       <div className="wrapper">
-     
+
         <section className="homePage__section1 sectionLayout">
 
-          <div className="sectionContentLayout section1-content ">
+          <motion.div
+            className="sectionContentLayout section1-content"
+            variants={fadeInAnimationVariants}
+            initial="initial"
+            whileInView="animate"
+            transition={{ ease: "anticipate", duration: 2 }}
+            viewport={{
+              once: true,
+            }}
+          >
             <h2>Find Your Dream Yacht Today</h2>
             <p>At our yacht brokerage firm, we offer expert brokers, a global network, and personalized service to help you buy or sell your yacht. With our extensive knowledge and connections in the industry, we can facilitate smooth transactions and ensure a seamless experience for our clients.</p>
             <ul>
@@ -61,19 +104,28 @@ const HomePage = () => {
               <li className="textMJost">Personalized Service</li>
             </ul>
             <Link to='about' className="section1-button"><button>Learn More</button></Link>
-          </div>
+          </motion.div>
 
           <img src="/home2.jpg" alt="a sailing image" className="imageCover" />
 
         </section>
- 
+
       </div>
 
       <section className="homePage__section2" >
         <div className="wrapper">
           <div className="sectionLayout ">
             <img src="/home3.jpg" alt="marina" className="imageCover imageOrder" />
-            <div className="sectionContentLayout section2-content">
+            <motion.div
+              className="sectionContentLayout section2-content"
+              variants={fadeInAnimationVariants}
+              initial="initial"
+              whileInView="animate"
+              transition={{ ease: "anticipate", duration: 2 }}
+              viewport={{
+                once: true,
+              }}
+            >
               <h2>Discover the Benefits of Working with Our Yacht Brokerage Firm</h2>
               <p>Our firm offers a seamless experience for both yacht buyers and sellers, ensuring smooth transactions and peace of mind.</p>
               <div className="section2-benefits">
@@ -90,7 +142,7 @@ const HomePage = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
@@ -104,13 +156,6 @@ const HomePage = () => {
           <Link to='buy'><button>View Listings</button></Link>
         </div>
       </div>
-
-      <div>
-        <Footer />
-      </div>
-
-
-
 
     </main>
   )
