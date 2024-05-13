@@ -4,7 +4,7 @@
 
     &__hero {
         z-index: -1;
-        padding: 5rem 2rem;
+        padding: 5rem 5rem;
         height: calc(100svh - 80px);
         background: url('/home1.jpg') no-repeat;
         background-position: 20% 40%;
@@ -12,14 +12,25 @@
         display: flex;
         flex-direction: column;
 
+        @include lg {
+            padding: 3rem 1rem;
+        }
+
+        @include md {
+            padding: 3rem 2rem;
+
+        }
+
 
 
         @include sm {
             background-position: 41%;
         }
 
-        .context {
+        .hero-content {
             color: $color-text-secondary;
+            background-color: transparent;
+
 
             .spanText {
                 font-size: clamp(1.7rem, 3vw + 1rem, 3rem);
@@ -193,6 +204,41 @@
             }
 
         }
+    }
+
+    &__banners {
+        background-color: $color-background-light-grey;
+
+
+        .banners-container {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 2rem;
+
+            @include md {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+
+            a {
+                width: auto;
+                display: flex;
+
+            }
+
+            img {
+                width: 60%;
+                margin: 0 auto;
+                object-fit: contain;
+            }
+
+        }
+
     }
 
 

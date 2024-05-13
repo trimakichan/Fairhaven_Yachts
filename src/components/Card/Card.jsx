@@ -1,11 +1,18 @@
 import './card.scss';
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useDelayedAnimSettings } from '../../animations/animationHooks';
 
-const Card = ({ item }) => {
-    console.log(item)
+
+const Card = ({ data: { item, index } }) => {
+    const settings = useDelayedAnimSettings();
+    const useDelayedAnim = { ...settings, transition: { delay: 0.8 * index, ease: "anticipate", duration: 1 }, custom: index }
 
     return (
-        <div className='card'>
+        <motion.div
+            className='card'
+            {...useDelayedAnim}
+        >
             <Link to={`/${item.id}`}>
                 <div className="card__image">
                     {item.status === 'new' ? <button >New Listing</button> : ''}
@@ -20,7 +27,7 @@ const Card = ({ item }) => {
                 <Link to={`/${item.id}`}><p><span className='linkText'>View Details&nbsp; &gt;</span></p></Link>
             </div>
 
-        </div>
+        </motion.div>
     )
 };
 
