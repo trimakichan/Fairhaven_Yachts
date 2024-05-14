@@ -4,12 +4,12 @@ import Card from "../components/Card/Card";
 import Reviews from "../components/Reviews/Reviews"
 import { listingData } from "../data/dammyData";
 import { Link } from "react-router-dom";
-import { useFadeInAnimSettings} from "../animations/animationHooks";
+import { useFadeInAnimSettings } from "../animations/animationHooks";
 
 
 
 const HomePage = () => {
-	const FadeInAnimSettings = useFadeInAnimSettings();
+	const fadeInAnimSettings = useFadeInAnimSettings();
 	return (
 		<main className="homePage">
 
@@ -17,7 +17,7 @@ const HomePage = () => {
 				<div className="hero-content" >
 					<motion.p
 						className="heroHeadingText"
-						{...FadeInAnimSettings}
+						{...fadeInAnimSettings}
 
 					><span
 						className="spanText">WELCOME TO</span> <br />
@@ -33,7 +33,7 @@ const HomePage = () => {
 			<div className="wrapper">
 				<motion.article
 					className="homePage__intro"
-					{...FadeInAnimSettings}
+					{...fadeInAnimSettings}
 				>
 					<h1 className="intro-title"> <span>Experienced</span> Yacht Brokerage</h1>
 					<div className="description subtitle">Welcome to our premier yacht brokerage firm, where we provide exceptional service and expertise in facilitating smooth transactions for yacht owners and buyers. With our extensive network and deep understanding of the industry, we are dedicated to delivering unparalleled results and exceeding your expectations.</div>
@@ -43,13 +43,13 @@ const HomePage = () => {
 			<article className="homePage__listings">
 				<div className="wrapper">
 					<div className="listing-title-container">
-					<div className="listing-title">
-						<p>Yachts</p>
-						<h2>New Listings</h2>
-						<div className="subtitle">Explore our new and featured yacht listings.</div>
-						<div className='anchor'>
-							<AnchorIcon />
-						</div>
+						<div className="listing-title">
+							<p>Yachts</p>
+							<h2>New Listings</h2>
+							<div className="subtitle">Explore our new and featured yacht listings.</div>
+							<div className='anchor'>
+								<AnchorIcon />
+							</div>
 						</div>
 					</div>
 
@@ -69,7 +69,7 @@ const HomePage = () => {
 
 					<motion.div
 						className="sectionContentLayout section1-content"
-						{...FadeInAnimSettings}
+						{...fadeInAnimSettings}
 					>
 						<h2>Find Your Dream Yacht Today</h2>
 						<p>At our yacht brokerage firm, we offer expert brokers, a global network, and personalized service to help you buy or sell your yacht. With our extensive knowledge and connections in the industry, we can facilitate smooth transactions and ensure a seamless experience for our clients.</p>
@@ -93,7 +93,7 @@ const HomePage = () => {
 						<img src="/home3.jpg" alt="marina" className="imageCover imageOrder" />
 						<motion.div
 							className="sectionContentLayout section2-content"
-							{...FadeInAnimSettings}
+							{...fadeInAnimSettings}
 						>
 							<h2>Discover the Benefits of Working with Our Yacht Brokerage Firm</h2>
 							<p>Our firm offers a seamless experience for both yacht buyers and sellers, ensuring smooth transactions and peace of mind.</p>
@@ -136,7 +136,7 @@ const HomePage = () => {
 				<div className="wrapper">
 					<motion.div
 						className="banners-container"
-						{...FadeInAnimSettings}
+						{...fadeInAnimSettings}
 					>
 						<a href="https://www.yachtingmagazine.com/" target="_blank"><img src="/yachting-logo.webp" alt="Yachting Magazine Logo" title="Yachting Magazine" /></a>
 						<a href="https://www.passagemaker.com/" target="_blank"><img src="/passagemaker-trawlerfest-logo.webp" alt="Passagemaker Trawlerfest Logo" title="Passagemaker Trawlerfest" /></a>

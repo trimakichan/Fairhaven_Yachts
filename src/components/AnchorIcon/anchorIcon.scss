@@ -2,10 +2,12 @@
 
 .iconContainer {
     width: 100%;
+
+
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .5rem;
+    // gap: .2rem;
 
     .line {
         height: 2px;
@@ -13,10 +15,14 @@
         flex-grow: 1;
     }
 
+    .rope-image {
+           object-fit: contain;
+    }
+
     .anchor-icon {
-        color: $color-accent-gold;
-        width: 50px;
-        height: 50px;
+        // color: $color-accent-gold;
+        max-width: 12%;
+        height: auto;
     }
 
 }
