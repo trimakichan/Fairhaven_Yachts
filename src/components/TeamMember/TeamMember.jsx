@@ -15,12 +15,11 @@ const TeamMember = ({ memberInfo }) => {
             <figure className="teamMember-top">
                 <img src={m.image} alt={`${m.firstName} ${m.lastName} Profile Image`} title={`${m.firstName} ${m.lastName}`} />
                 <figcaption>
-                    <div className='textSRoboto bold'>{m.firstName} {m.lastName} </div>
-                    <div>{m.isOwner ? 'Owner' : ''}</div>
+                    <div className='textSRoboto bold'>{m.firstName} {m.lastName} {m.isOwner ? '| Owner' : ''}</div>
                 </figcaption>
             </figure>
 
-                 <div className="teamMember-bottom">
+            <div className="teamMember-bottom">
                 <div className='textSRoboto'>{m.description}</div>
                 <div className="teamMember-contactInfo">
 
@@ -29,7 +28,7 @@ const TeamMember = ({ memberInfo }) => {
                         <MdEmail className='iconStyles' /> <a href={`mailto:${m.email}`}> {m.email}</a>
                     </div> : ''}
 
-            </div>
+                </div>
             </div>
         </section>
     )
