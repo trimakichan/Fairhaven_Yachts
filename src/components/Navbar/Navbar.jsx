@@ -46,6 +46,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
+    aria-label='primary-navigation'
       className='navbar textSPlayfair'
       variants={{
         visible: { y: 0 },

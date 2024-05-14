@@ -63,6 +63,8 @@
         align-items: center;
         gap: 1.5rem;
 
+
+
         @include md {
             padding: 1rem;
             flex-direction: column;
@@ -71,8 +73,27 @@
 
 
 
-        .title {
+        .intro-title {
             flex: 1;
+
+            span {
+                position: relative;
+                
+                    &::after {
+                        position: absolute;
+                        background-color: rgba($color-accent-gold, .8);
+                        content: '';
+                        width: 98%;
+                        height: 35%;
+                        left: 5%;
+                        bottom: 10%;
+                        z-index: -1;
+                    }
+
+            }
+            
+
+
         }
 
         .description {
@@ -82,28 +103,29 @@
 
     &__listings {
         background-color: $color-background-light-grey;
-        // width: 100svw;
-        display: flex;
-        justify-content: center;
 
+        .listing-title-container {
+            display: flex;
+            justify-content: center;
 
-        .title {
-            // border: 1px solid blue;
-            margin: 2rem;
-            text-align: center;
-            // border: 1px solid red;
+            .listing-title {
+                display: inline-block;
 
-            h1 {
-                padding: 1rem 0;
-            }
+                margin: 2rem;
+                text-align: center;
+                // border: 1px solid red;
 
-            .anchor {
-                margin: 2rem 0;
-                // padding: 2rem;
+                h1 {
+                    padding: 1rem 0;
+                }
 
-
+                .anchor {
+                    margin: 2rem 0;
+                    // padding: 2rem;
+                }
             }
         }
+
 
         .listings-container {
             display: flex;
@@ -218,9 +240,9 @@
             gap: 2rem;
 
             @include md {
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
 
             }
 

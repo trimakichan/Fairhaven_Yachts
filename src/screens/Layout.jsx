@@ -6,16 +6,20 @@ import { NavContext } from "../contexts/navContext";
 import Footer from "../components/Footer/Footer";
 
 const Layout = () => {
-    const {openNav, setOpenNav} = useContext(NavContext);
+    const { openNav, setOpenNav } = useContext(NavContext);
 
     return (
         <>
             <div className="layout" onClick={() => openNav ? setOpenNav(!openNav) : ''}>
-                <Navbar />
+                <header>
+                    <Navbar />
+                </header>
                 <div className="content" >
                     <Outlet />
                 </div>
+
                 <Footer />
+
             </div>
         </>
     )

@@ -51,7 +51,7 @@ const Reviews = () => {
     return (
         <div className='reviews'>
             <div className="reviews__title">
-                <h1>Satisfied Customers</h1>
+                <h2>Satisfied Customers</h2>
                 <p>Read what our clients have to say about us!</p>
             </div>
 

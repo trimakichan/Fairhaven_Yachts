@@ -4,7 +4,7 @@ import Card from "../components/Card/Card";
 import Reviews from "../components/Reviews/Reviews"
 import { listingData } from "../data/dammyData";
 import { Link } from "react-router-dom";
-import { useFadeInAnimSettings, useDelayedAnimSettings } from "../animations/animationHooks";
+import { useFadeInAnimSettings} from "../animations/animationHooks";
 
 
 
@@ -13,7 +13,7 @@ const HomePage = () => {
 	return (
 		<main className="homePage">
 
-			<div className="homePage__hero">
+			<section className="homePage__hero">
 				<div className="hero-content" >
 					<motion.p
 						className="heroHeadingText"
@@ -28,26 +28,28 @@ const HomePage = () => {
 						<button>Learn More</button>
 					</div>
 				</div>
-			</div>
+			</section>
 
 			<div className="wrapper">
-				<motion.section
+				<motion.article
 					className="homePage__intro"
 					{...FadeInAnimSettings}
 				>
-					<h1 className="title"> Experienced Yacht Brokerage</h1>
+					<h1 className="intro-title"> <span>Experienced</span> Yacht Brokerage</h1>
 					<div className="description subtitle">Welcome to our premier yacht brokerage firm, where we provide exceptional service and expertise in facilitating smooth transactions for yacht owners and buyers. With our extensive network and deep understanding of the industry, we are dedicated to delivering unparalleled results and exceeding your expectations.</div>
-				</motion.section>
+				</motion.article>
 			</div>
 
-			<section className="homePage__listings">
+			<article className="homePage__listings">
 				<div className="wrapper">
-					<div className="title">
+					<div className="listing-title-container">
+					<div className="listing-title">
 						<p>Yachts</p>
-						<h1>New Listings</h1>
+						<h2>New Listings</h2>
 						<div className="subtitle">Explore our new and featured yacht listings.</div>
 						<div className='anchor'>
 							<AnchorIcon />
+						</div>
 						</div>
 					</div>
 
@@ -59,11 +61,11 @@ const HomePage = () => {
 						<Link to='buy'><button>View all</button></Link>
 					</div>
 				</div>
-			</section>
+			</article>
 
 			<div className="wrapper">
 
-				<section className="homePage__section1 sectionLayout">
+				<article className="homePage__section1 sectionLayout">
 
 					<motion.div
 						className="sectionContentLayout section1-content"
@@ -81,11 +83,11 @@ const HomePage = () => {
 
 					<img src="/home2.jpg" alt="a sailing image" className="imageCover" />
 
-				</section>
+				</article>
 
 			</div>
 
-			<section className="homePage__section2" >
+			<article className="homePage__section2" >
 				<div className="wrapper">
 					<div className="sectionLayout ">
 						<img src="/home3.jpg" alt="marina" className="imageCover imageOrder" />
@@ -113,24 +115,24 @@ const HomePage = () => {
 					</div>
 				</div>
 
-			</section>
+			</article>
 
 
-			<div className="homePage__callAction">
+			<article className="homePage__callAction">
 				<div className="callAction-content">
-					<h1>Discover Your Dream Yacht Today</h1>
+					<h2>Discover Your Dream Yacht Today</h2>
 					<p>Browse our latest listings and find the perfect yacht for your next adventure.</p>
 					<Link to='buy'><button>View Listings</button></Link>
 				</div>
-			</div>
+			</article>
 
 			<div className="wrapper">
-				<div className="homePage__reviews">
+				<article className="homePage__reviews">
 					<Reviews />
-				</div>
+				</article>
 			</div>
 
-			<div className="homePage__banners">
+			<aside className="homePage__banners">
 				<div className="wrapper">
 					<motion.div
 						className="banners-container"
@@ -142,10 +144,7 @@ const HomePage = () => {
 						<a href="https://www.sevenstar-yacht-transport.com/" target="_blank"><img src="/sevenstar-logo.webp" alt="Sevenstar Logo" title="Sevenstar Yacht Transport" /></a>
 					</motion.div>
 				</div>
-			</div>
-
-
-
+			</aside>
 
 
 
