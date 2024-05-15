@@ -37,11 +37,11 @@ const HomePage = () => {
 					
 				>
 					<motion.h1 
-					className="intro-title"
+					className="homePage-intro-title"
 						{...fadeInAnimSettings}
 					> <span>Experienced</span> Yacht Brokerage</motion.h1>
 					<motion.div 
-					className="description subtitle"
+					className="homePage-intro-description subtitle"
 						{...fadeInAnimSettings}
 					>Welcome to our premier yacht brokerage firm, where we provide exceptional service and expertise in facilitating smooth transactions for yacht owners and buyers. With our extensive network and deep understanding of the industry, we are dedicated to delivering unparalleled results and exceeding your expectations.</motion.div>
 				</article>

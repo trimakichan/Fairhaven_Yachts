@@ -59,7 +59,7 @@
         padding: 2rem;
         min-height: 400px;
         background: url('/compass.svg') no-repeat center;
-        background-size: 30%;
+        background-size: contain;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -71,34 +71,31 @@
             padding: 1rem;
             flex-direction: column;
             gap: 1rem;
+
         }
 
 
 
-        .intro-title {
+        .homePage-intro-title {
             flex: 1;
 
             span {
                 position: relative;
-                
-                    &::after {
-                        position: absolute;
-                        background-color: rgba($color-accent-gold, .8);
-                        content: '';
-                        width: 98%;
-                        height: 35%;
-                        left: 5%;
-                        bottom: 10%;
-                        z-index: -1;
-                    }
 
+                &::after {
+                    position: absolute;
+                    background-color: rgba($color-accent-gold, .8);
+                    content: '';
+                    width: 98%;
+                    height: 35%;
+                    left: 5%;
+                    bottom: 10%;
+                    z-index: -1;
+                }
             }
-            
-
-
         }
 
-        .description {
+        .homePage-intro-description {
             flex: 1.3;
         }
     }
