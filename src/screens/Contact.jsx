@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useFadeInAnimSettings } from "../animations/animationHooks";
+import Form from "../components/Form/Form";
+import AnchorIcon from '../components/AnchorIcon/AnchorIcon'
 
 import { MdOutlineEmail } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
@@ -29,10 +31,13 @@ const Contact = () => {
 
       <div className="wrapper">
         <article className="contact__info">
-          <div className="contact-info-title">
+          <motion.div
+            className="contact-info-title"
+            {...fadeInAnimSettings}
+          >
             <h2>Contact Information</h2>
             <p>For any inquiries, please feel free to reach out to us.</p>
-          </div>
+          </motion.div>
 
           <div className="contact-info-container">
             <div className="content-text-container textMJost">
@@ -98,17 +103,21 @@ const Contact = () => {
 
       <div className="contact__form">
         <div className="wrapper">
-          <div className="form-title">
+          <motion.div 
+          className="form-title"
+            {...fadeInAnimSettings
+            }
+          >
             <h2>Get in Touch</h2>
             <p>Have a question or need assistance? We&apos;re here to help.</p>
+            <AnchorIcon />
+          </motion.div>
+          <div className="contact-form-container">
+            <Form />
           </div>
 
-          
 
-          <div></div>
-
-
-      </div>
+        </div>
       </div>
 
     </main>

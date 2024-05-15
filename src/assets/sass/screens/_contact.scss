@@ -10,7 +10,7 @@
 
     &__info {
         padding: 2rem;
-     
+
         .contact-info-title {
             margin-bottom: 2rem;
 
@@ -31,9 +31,9 @@
                 flex-direction: column;
                 gap: 2rem;
 
-                    @include md {
-                            flex: initial
-                        }
+                @include md {
+                    flex: initial
+                }
 
                 a {
                     &:hover {
@@ -80,6 +80,37 @@
     }
 
     &__form {
+        padding: 2rem;
+        background: url('/boatWheelHalf.svg') no-repeat, url('/boatWheelRight.svg') no-repeat;
+        background-size: 35%, 35%;
+        background-position: left, right 100px;
         background-color: $color-background-light-grey;
+
+        @include md {
+            padding: 0;
+            background-size: 80%, 70%;
+            background-position: left top, right bottom;
+
+
+        }
+
+
+        .form-title {
+            margin: 0 auto;
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-form-container {
+            width: 70%;
+            margin: 0 auto;
+
+            @include md {
+                width: 100%;
+            }
+        }
     }
 }
