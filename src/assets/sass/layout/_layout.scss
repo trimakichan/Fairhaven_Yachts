@@ -1,4 +1,4 @@
-@use '../abstracts/mixins' as *;
+@use '../abstracts/' as *;
 
 .wrapper {
     padding: 2rem;
@@ -37,3 +37,14 @@
     height: 100%;
     object-fit: cover;
 }
+
+
+.heroBgStyle {
+    max-width: 1000px;
+    padding: 3rem;
+    background-color: rgba($color-primary, .45);
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+
+}
+

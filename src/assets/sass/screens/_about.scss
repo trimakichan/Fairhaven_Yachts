@@ -8,41 +8,16 @@
     }
 
     &__hero {
-        width: 100%;
-        height: 600px;
-        padding: 5rem 5rem;
-        margin-bottom: 2rem;
-        background: url('/about1.jpg') no-repeat;
-        background-size: cover;
-        background-position: 20% 40%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-
-        @include md {
-            padding: 2rem;
-            margin-bottom: 1rem;
-            grid-template-columns: 1fr;
-            align-items: end;
-        }
-
-
-        .hero-title {
-            padding: 1rem;
-            background-color: rgba($color-primary, .45);
-            border-radius: 10px;
-        }
-
-
+        @include heroSectionStyle('/about1.jpg', 20% 40%);
     }
 
     &__team {
-        padding:  0 3rem 2rem;
+        padding: 0 3rem 2rem;
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center; 
+        align-items: center;
 
         @include md {
             padding: 0 0 2rem;
@@ -60,8 +35,8 @@
             }
         }
 
-        .team-members{
-           
+        .team-members {
+
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 2rem;

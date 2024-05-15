@@ -8,8 +8,6 @@ import { MdEmail } from "react-icons/md";
 import { PiBoatFill } from "react-icons/pi";
 import { FaSailboat } from "react-icons/fa6";
 
-
-
 const Footer = () => {
     return (
         <footer className='footer'>
@@ -24,23 +22,23 @@ const Footer = () => {
                             <div className='bold'>
                                 La Conner Office
                             </div>
-                            <div>
+                            <a href="https://maps.app.goo.gl/e25YNJMbJQ2vSAE37" target="_blank">
                                 PO Box 1531
                                 105 N First Street <br />
                                 La Conner, WA 98257
                                 USA
-                            </div>
+                            </a>
                         </div>
 
 
                         <div className="kirklandContainer textSPlayfair">
                             <div className='bold'>
-                                Kirkland Office
+                                 Kirkland Office 
                             </div>
-                            <div>
+                            <a href='https://maps.app.goo.gl/vj46h3ipCPtXrvU47' target="_blank">
                                 5400 Carillon Point <br />
                                 Kirkland, WA 98033 USA
-                            </div>
+                            </a>
                         </div>
 
 
@@ -57,7 +55,7 @@ const Footer = () => {
                             <FaFax className='footer-icons' /> &nbsp;: &nbsp; <a href="tel:1-206-260-2726">+1-206-260-2726</a>
                         </h5>
                         <h5>
-                            <MdEmail className='footer-icons' /> &nbsp;:&nbsp;  <a href="mailto:uwhuskies00@hotmail.com">uwhuskies00@hotmail.com</a>
+                            <MdEmail className='footer-icons' /> &nbsp;:&nbsp;  <a href="mailto:fairhavenyachtsales@gmail.com">fairhavenyachtsales@gmail.com</a>
                         </h5>
 
 

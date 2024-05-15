@@ -55,8 +55,15 @@ $font-family-cursive: "Tangerine",
     font-size: 1.3rem;
 }
 
-.textSRoboto {
+.textMRoboto, .textSRoboto {
     font-family: $font-family-secondary;
+}
+
+.textMRoboto {
+    font-size: 1.3rem;
+}
+
+.textSRoboto {
     font-size: 1rem;
 }
 

@@ -23,7 +23,7 @@ export const teamData = [
             id: 3,
             firstName: "Pat",
             lastName: "McGarry",
-            description: "Pat purchased his first boat, an El Toro, when he was 12 years old and has been literally on the water ever since. He holds many national and international sailing records with the Formula 40 catamaran 	&ldquo;Dragonfly&rdquo;. Pat spent 40 years in the marine construction business and he and his wife Carol also spend time relaxing and cruising aboard their 48' Navigator &ldquo;Footprints&rdquo;. Let Pat's experience in the marine industry help you with a satisfying purchase or sale of your next yacht.",
+            description: `Pat purchased his first boat, an El Toro, when he was 12 years old and has been literally on the water ever since.He holds many national and international sailing records with the Formula 40 catamaran "Dragonfly".Pat spent 40 years in the marine construction business and he and his wife Carol also spend time relaxing and cruising aboard their 48' Navigator "Footprints". Let Pat's experience in the marine industry help you with a satisfying purchase or sale of your next yacht.`,
             cell: '1-206-601-1003',
             email: 'patwindntide@gmail.com',
             image: '/pat-mcgarry.webp'
@@ -51,8 +51,6 @@ export const teamData = [
             firstName: "Wendy",
             lastName: "Walsh",
             description: "Wendy Walsh, RN, MBA, CCM is the Safety and Health Manager who brings her healthcare and yachting experiences to our team. She and her husband have been yachting for the last ten years around the Pacific Northwest. Some of her responsibilities are developing, implementing and monitoring safety programs for our company.",
-            cell: '1-206-371-6465',
-            email: 'opulentfish@gmail.com',
             image: '/wendy-walsh.webp'
         },
 ]

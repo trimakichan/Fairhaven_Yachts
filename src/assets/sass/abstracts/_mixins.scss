@@ -40,11 +40,11 @@
 
 @mixin buttonStyleSimple {
     padding: .6rem 1rem;
-        font-size: 1rem;
-        color: $color-text-primary;
-        border: 1px solid $color-text-primary;
-        background-color: transparent;
-        cursor: pointer;
+    font-size: 1rem;
+    color: $color-text-primary;
+    border: 1px solid $color-text-primary;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 @mixin buttonStlyeSmall {
@@ -57,15 +57,36 @@
     cursor: pointer;
 }
 
-//For box containers
+//For section1 and section2 containers
 @mixin sectionContentStyle {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+}
+
+//For hero section (about and contact page)
+@mixin heroSectionStyle($imageLink, $position) {
+    width: 100%;
+    height: 600px;
+    padding: 5rem;
+    margin-bottom: 2rem;
+    background: url($imageLink) no-repeat;
+    background-position: $position;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    @include md {
+        padding: 2rem;
+        margin-bottom: 1rem;
+        grid-template-columns: 1fr;
+        align-items: end;
     }
 }

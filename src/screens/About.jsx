@@ -7,15 +7,15 @@ import { teamData } from "../data/teamData";
 
 
 const About = () => {
-  const FadeInAnimSettings = useFadeInAnimSettings();
+  const fadeInAnimSettings = useFadeInAnimSettings();
   return (
     <main className="about">
       <article className="about__hero">
-        <div className="hero-title">
+        <div className="heroBgStyle">
         <motion.div 
-        {...FadeInAnimSettings}>
+        {...fadeInAnimSettings}>
         <h1>Connecting Yacht Enthusiasts</h1>
-        <p>We are a yacht brokerage firm dedicated to helping yacht owners and buyers navigate the seas of transactions.</p>
+            <div className="heroParagraph">We are a yacht brokerage firm dedicated to helping yacht owners and buyers navigate the seas of transactions.</div>
         </motion.div>
       </div>
       </article>
@@ -24,7 +24,7 @@ const About = () => {
       <article className="about__team">
         <motion.div 
         className="team-title"
-            {...FadeInAnimSettings}
+            {...fadeInAnimSettings}
         >
           <p>Experienced</p>
           <h2>Meet Our Team</h2>
@@ -45,7 +45,7 @@ const About = () => {
 
             <motion.div
               className="sectionContentLayout about-content"
-              {...FadeInAnimSettings}
+              {...fadeInAnimSettings}
             >
               <h2>Our Firm's History and Achievements</h2>
               <p>With over 20 years of experience, our yacht brokerage firm has established itself as a leader in the industry. We have successfully facilitated countless smooth transactions for yacht owners and buyers, earning a reputation for excellence and trust.</p>

@@ -58,6 +58,8 @@
     &__intro {
         padding: 2rem;
         min-height: 400px;
+        background: url('/compass.svg') no-repeat center;
+        background-size: 30%;
         display: flex;
         justify-content: center;
         align-items: center;
