@@ -40,10 +40,9 @@ const About = () => {
       </div>
 
       <article className="about__section1">
-        <div className="wrapper">
-          <div className=" sectionLayout">
+        <div className="wrapper sectionLayout">
 
-            <motion.div
+           <motion.div
               className="sectionContentLayout about-content"
               {...fadeInAnimSettings}
             >
@@ -54,12 +53,10 @@ const About = () => {
 
             </motion.div>
 
-            <div className="about-image">
-              <img src="/about2.jpg" alt="A boat image" />
-            </div>
-        
+              <img src="/about2.jpg" alt="A boat image" className="imageCover"/>
+   
           </div>
-        </div>
+
 
       </article>
 

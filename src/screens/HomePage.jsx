@@ -33,19 +33,17 @@ const HomePage = () => {
 
 			<div className="wrapper">
 				<article
-					className="homePage__intro"
-					
-				>
-					<motion.h1 
-					className="homePage-intro-title"
+					className="homePage__intro">
+					<motion.h1
+						className="homePage-intro-title"
 						{...fadeInAnimSettings}
 					> <span>Experienced</span> Yacht Brokerage</motion.h1>
-					<motion.div 
-					className="homePage-intro-description subtitle"
+					<motion.div
+						className="homePage-intro-description subtitle"
 						{...fadeInAnimSettings}
 					>Welcome to our premier yacht brokerage firm, where we provide exceptional service and expertise in facilitating smooth transactions for yacht owners and buyers. With our extensive network and deep understanding of the industry, we are dedicated to delivering unparalleled results and exceeding your expectations.</motion.div>
 				</article>
-				
+
 			</div>
 
 			<article className="homePage__listings">
@@ -55,9 +53,7 @@ const HomePage = () => {
 							<p>Yachts</p>
 							<h2>New Listings</h2>
 							<div className="subtitle">Explore our new and featured yacht listings.</div>
-							<div className='anchor'>
-								<AnchorIcon />
-							</div>
+							<AnchorIcon />
 						</div>
 					</div>
 
@@ -96,31 +92,31 @@ const HomePage = () => {
 			</div>
 
 			<article className="homePage__section2" >
-				<div className="wrapper">
-					<div className="sectionLayout ">
-						<img src="/home3.jpg" alt="marina" className="imageCover imageOrder" />
-						<motion.div
-							className="sectionContentLayout section2-content"
-							{...fadeInAnimSettings}
-						>
-							<h2>Discover the Benefits of Working with Our Yacht Brokerage Firm</h2>
-							<p>Our firm offers a seamless experience for both yacht buyers and sellers, ensuring smooth transactions and peace of mind.</p>
-							<div className="section2-benefits">
-								<div className="section2-buyer">
-									<p className="bold">For Buyers</p>
-									<p>
-										Access a wide selection of high-quality yachts and receive expert guidance throughout the buying process.
-									</p>
-								</div>
-								<div className="section2-seller">
-									<p className="bold">For Seller</p>
-									<p>
-										List your yacht with us and benefit from our extensive network and marketing expertise.
-									</p>
-								</div>
+				<div className="wrapper sectionLayout">
+
+					<img src="/home3.jpg" alt="marina" className="imageCover imageOrder" />
+					<motion.div
+						className="sectionContentLayout section2-content"
+						{...fadeInAnimSettings}
+					>
+						<h2>Discover the Benefits of Working with Our Yacht Brokerage Firm</h2>
+						<p>Our firm offers a seamless experience for both yacht buyers and sellers, ensuring smooth transactions and peace of mind.</p>
+						<div className="section2-benefits">
+							<div className="section2-buyer">
+								<p className="bold">For Buyers</p>
+								<p>
+									Access a wide selection of high-quality yachts and receive expert guidance throughout the buying process.
+								</p>
 							</div>
-						</motion.div>
-					</div>
+							<div className="section2-seller">
+								<p className="bold">For Seller</p>
+								<p>
+									List your yacht with us and benefit from our extensive network and marketing expertise.
+								</p>
+							</div>
+						</div>
+					</motion.div>
+
 				</div>
 
 			</article>

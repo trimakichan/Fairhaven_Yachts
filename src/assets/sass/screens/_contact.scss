@@ -9,8 +9,7 @@
 
 
     &__info {
-        padding: 2rem;
-
+  
         .contact-info-title {
             margin-bottom: 2rem;
 
@@ -80,18 +79,14 @@
     }
 
     &__form {
-        padding: 2rem;
         background: url('/boatWheelHalf.svg') no-repeat, url('/boatWheelRight.svg') no-repeat;
         background-size: 35%, 35%;
         background-position: left, right 100px;
         background-color: $color-background-light-grey;
 
         @include md {
-            padding: 0;
             background-size: 80%, 70%;
             background-position: left top, right bottom;
-
-
         }
 
 

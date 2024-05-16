@@ -20,7 +20,7 @@ const SellYachts = () => {
         </div>
       </article>
 
-      <article className="wrapper">
+      <div className="wrapper">
         <article
           className="sellYachts__intro">
           <motion.h1
@@ -33,21 +33,21 @@ const SellYachts = () => {
           >At our brokerage firm, we understand the importance of selling your yacht quickly and efficiently. With our expertise and network of potential buyers, we can help you navigate the selling process with ease. Our team of experienced professionals will handle all the details, from marketing your yacht to negotiating the best price. Trust us to make your yacht selling experience seamless and stress-free.</motion.div>
         </article>
 
-      </article>
+      </div>
 
       <article className="sellYachts__section1" >
-        <div className="wrapper">
-          <div className="sectionLayout ">
-            <img src="/sellYachst2.jpg" alt="marina" className="imageCover imageOrder" />
-            <motion.div
-              className="sectionContentLayout section2-content"
-              {...fadeInAnimSettings}
-            >
-              <h2>Why Choose Our Yacht Brokerage Firm?</h2>
-              <p>Our yacht brokerage firm offers a seamless selling experience, providing expert guidance and personalized service to ensure a successful transaction. With our extensive network and industry knowledge, we connect yacht owners with qualified buyers, maximizing the value of their vessel.</p>
-            </motion.div>
-          </div>
+        <div className="wrapper sectionLayout">
+
+          <img src="/sellYachst2.jpg" alt="marina" className="imageCover imageOrder" />
+          <motion.div
+            className="sectionContentLayout section2-content"
+            {...fadeInAnimSettings}
+          >
+            <h2>Why Choose Our Yacht Brokerage Firm?</h2>
+            <p>Our yacht brokerage firm offers a seamless selling experience, providing expert guidance and personalized service to ensure a successful transaction. With our extensive network and industry knowledge, we connect yacht owners with qualified buyers, maximizing the value of their vessel.</p>
+          </motion.div>
         </div>
+
 
       </article>
 

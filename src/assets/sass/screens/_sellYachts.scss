@@ -32,14 +32,13 @@
 
     //create global styles later
     &__intro {
-        padding: 2rem;
         min-height: 400px;
         background: url('/compass.svg') no-repeat center;
         background-size: contain;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1.5rem;
+        gap: 3rem;
 
         @include md {
             padding: 1rem;
@@ -63,7 +62,7 @@
 
     //create global styles later
     &__contact {
-        padding: 2rem;
+
         background: url('/boatWheelHalf.svg') no-repeat, url('/anchorHalf.svg') no-repeat;
             background-size: contain;
             background-position: left, right;
