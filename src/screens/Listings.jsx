@@ -39,13 +39,24 @@ const Listings = () => {
 
       <article className="listings__section">
         <div className="wrapper sectionLayout">
-  
+
           <div className="sectionContentLayout listings-section-content-container">
-            <h2>Find Your Dream Yacht Today</h2>
-            <p>Contact our brokers to get more information about the yachts available for sale.</p>
-            <Link to="/contact"><button>Contact Us</button></Link>
+
+            <motion.h2
+              {...fadeInAnimSettings}
+            >Find Your Dream Yacht Today</motion.h2>
+            <motion.p
+              {...fadeInAnimSettings}
+            >Contact our brokers to get more information about the yachts available for sale.</motion.p>
+            <Link to="/contact">
+              <motion.button
+                {...fadeInAnimSettings}
+              >Contact Us
+              </motion.button>
+            </Link>
+
           </div>
-   
+
 
           <img src="/listings2.jpg" alt="An image of a mid-sized boat on the blue ocean." className="imageCover" />
 

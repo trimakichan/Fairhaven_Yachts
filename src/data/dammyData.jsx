@@ -4,7 +4,7 @@ export const listingData = [
         name: "Ocean Alexander",
         description: "Beautiful Ocean Alexander 548 Pilothouse Motor Yacht. This popular yacht features 3 staterooms, two heads all finished in beautiful teak and elegant soft goods. She is powered by a pair of low hrs Cat C-12 diesels, twin gensets, reverse cycle heat and AC. She has a full electronics suite, stabilizers, watermaker, Bow and stern thursters, hard top flybridge for year round cruising. She has been professional maintained and shows in perfect condition",
         price: '992,500',
-        image: ['/ocean_alexander.webp', '/listingImages/listing2', '/listingImages/listing3', '/listingImages/listing4', '/listingImages/listing5'],
+        image: ['/ocean_alexander.webp', '/listingImages/listing2.jpg', '/listingImages/listing3.jpg', '/listingImages/listing4.jpg', '/listingImages/listing5.jpg', '/listingImages/listing4.jpg', '/listingImages/listing5.jpg'],
         city: 'Bainbridge Island',
         state: 'Washington',
         status: 'new'
