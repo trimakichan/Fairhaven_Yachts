@@ -20,7 +20,7 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    object-fit: cover; // Change to 'cover' to ensure the image covers the area
+                    object-fit: cover; 
                     transition: all 1s ease-in-out;
         
                     &:hover, &:focus {

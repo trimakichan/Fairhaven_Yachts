@@ -5,13 +5,23 @@ import { useParams } from 'react-router-dom';
 import { GrLocation } from "react-icons/gr";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { IoIosArrowDropright } from "react-icons/io";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
+import ImageSlider from '../components/ImageSlider/ImageSlider';
 
 
 
 const ListingDetails = () => {
   const params = useParams();
   const [data, setData] = useState([]);
+  //  console.log(data.image)
   const [mainImage, setMainImage] = useState();
+  const [imageIndex, setImageIndex] = useState(0);
+  const [isSliderOn, setIsSliderOn] = useState(false);
+  const sliderRef = useRef(null);
+  const sliderMobileRef = useRef(null);
+  let touchStart = 0;
+  let touchEnd = 0;
 
   useEffect(() => {
 
@@ -20,26 +30,24 @@ const ListingDetails = () => {
       if (list.length > 0) {
         setData(list[0]);
         setMainImage(list[0].image[0])
-        // setMainImage(data.image?.[0])
       }
     }
   }, [params])
 
 
-  const sliderRef = useRef(null);
-  let touchStart = 0;
-  let touchEnd = 0;
+
 
   //Scroll Horizontally on Mobile by touching. 
   const handleTouchStart = (e) => {
     // get the initial touch position
     touchStart = e.targetTouches[0].clientX;
-    console.log(touchStart)
+    // console.log(touchStart)
   }
 
   const handleTouchMove = (e) => {
     // update the touch position
     touchEnd = e.targetTouches[0].clientX;
+
   }
 
   const handleTouchEnd = () => {
@@ -53,9 +61,11 @@ const ListingDetails = () => {
 
   // This function is use for both mobile and desktop scrolls
   const moveSlide = (type, direction) => {
-    const scrollAmount = type === 'click' ? 350 : 600;
+    const scrollAmount = 350;
 
-    if (sliderRef.current) {
+    type === 'touch' && direction === 'right' ? changeImageIndex('right') : changeImageIndex('left')
+
+    if (sliderRef.current || sliderMobileRef.current) {
       if (direction === 'left') {
         sliderRef.current.scrollLeft -= scrollAmount;
       } else {
@@ -65,7 +75,26 @@ const ListingDetails = () => {
     }
   }
 
- 
+
+  // mobile 
+  const changeImageIndex = (direction) => {
+
+    if (direction === 'left') {
+      if (imageIndex === 0) {
+        setImageIndex(data.image.length - 1);
+      } else {
+        setImageIndex(imageIndex - 1);
+      }
+    }
+
+    if (direction === 'right') {
+      if (imageIndex === data.image.length - 1) {
+        setImageIndex(0)
+      } else {
+        setImageIndex(imageIndex + 1);
+      }
+    }
+  }
 
   return (
     <main className='listingDetails'>
@@ -89,27 +118,57 @@ const ListingDetails = () => {
             <IoIosArrowDropleft className='arrowStyles' onClick={() => moveSlide('click', 'left')} />
             <div className="slider-container"
               ref={sliderRef}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-      
+            // onTouchStart={handleTouchStart}
+            // onTouchMove={handleTouchMove}
+            // onTouchEnd={handleTouchEnd}
+
             >
               {data?.image?.map((image, index) => {
                 return <div key={index} className="image-container" onClick={() => setMainImage(image)}><img key={index} src={image} alt='' /> </div>
               })}
             </div>
-            <IoIosArrowDropright className='arrowStyles' onClick={() => moveSlide('click', 'right')}  />
+            <IoIosArrowDropright className='arrowStyles' onClick={() => moveSlide('click', 'right')} />
 
           </div>
 
-        </div>
+          {/* mobile screen */}
 
+          <div className='listingDetails__images__mobile'>
+            <div className={isSliderOn ? "mobile-fullSlider" : ""}>
+              <div
+                className="main-image"
+                ref={sliderMobileRef}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                {isSliderOn && <IoIosCloseCircleOutline className='close-icon' onClick={() => setIsSliderOn(!isSliderOn)} />}
+                <IoIosArrowDropleft className='arrow-left' onClick={() => changeImageIndex('left')} />
+                <img src={data?.image?.[imageIndex]} alt={`${data.name} Image`} onClick={() => setIsSliderOn(!isSliderOn)} />
+                <IoIosArrowDropright className='arrow-right' onClick={() => changeImageIndex('right')} />
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <div className="wrapper">
+        <div className="listingDetails__description">
+          <h2>Description</h2>
+          <p>{data.description}</p>
+
+          <div className="listingDetails-button-container">
+            <a href="tel:1-206-940-9088"><button className='call-button'>Call</button></a>
+            <a href="mailto:fairhavenyachtsales@gmail.com"><button className='email-button'>Email</button></a>
+          </div>
+
+        </div>
+      </div>
+
+
     </main>
   )
-
-
-
 
 }
 

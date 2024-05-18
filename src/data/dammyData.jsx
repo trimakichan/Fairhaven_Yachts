@@ -7,7 +7,8 @@ export const listingData = [
         image: ['/ocean_alexander.webp', '/listingImages/listing2.jpg', '/listingImages/listing3.jpg', '/listingImages/listing4.jpg', '/listingImages/listing5.jpg', '/listingImages/listing4.jpg', '/listingImages/listing5.jpg'],
         city: 'Bainbridge Island',
         state: 'Washington',
-        status: 'new'
+        status: 'new',
+        
     },
     {
         id: 2,
