@@ -3,7 +3,7 @@
 .contact {
 
     &__hero {
-        @include heroSectionStyle('/contact1.jpg', 50% 75%);
+        @include heroSectionStyle('/contact1.jpg', bottom);
 
     }
 

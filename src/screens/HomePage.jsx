@@ -49,12 +49,15 @@ const HomePage = () => {
 			<article className="homePage__listings">
 				<div className="wrapper">
 					<div className="listing-title-container">
-						<div className="listing-title">
+						<motion.div 
+						className="listing-title"
+							{...fadeInAnimSettings}
+						>
 							<p>Yachts</p>
 							<h2>New Listings</h2>
 							<div className="subtitle">Explore our new and featured yacht listings.</div>
 							<AnchorIcon />
-						</div>
+						</motion.div>
 					</div>
 
 					<div className="listings-container">

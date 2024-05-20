@@ -1,16 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import './navbar.scss';
 
 import { CiMenuFries } from "react-icons/ci";
 import { IoCloseOutline } from "react-icons/io5";
-import { NavContext } from '../../contexts/navContext';
+import { Contexts } from '../../contexts/contexts';
 
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 
+import { TiPhoneOutline } from "react-icons/ti";
 
 const Navbar = () => {
-  const { openNav, setOpenNav } = useContext(NavContext);
+  const { openNav, setOpenNav } = useContext(Contexts);
 
   const { scrollY } = useScroll()
   const [navHidden, setNavHidden] = useState(false);
@@ -24,7 +25,7 @@ const Navbar = () => {
 
     const previous = scrollY.getPrevious();
 
-    if (latest > previous && latest > 250) {
+    if (latest > previous && latest > 300 && !openNav) {
       setNavHidden(true)
     } else {
       setNavHidden(false)
@@ -39,14 +40,14 @@ const Navbar = () => {
     { href: '/contact', text: 'Contact' }
   ];
 
-  const renderLink = (link) => (
-    <a href={link.href}  >{link.text}</a>
+  const renderLink = (link, index) => (
+    <a key={index} href={link.href}  >{link.text}</a>
   )
 
 
   return (
     <motion.nav
-    aria-label='primary-navigation'
+      aria-label='primary-navigation'
       className='navbar textSPlayfair'
       variants={{
         visible: { y: 0 },
@@ -62,21 +63,25 @@ const Navbar = () => {
           </a>
         </div>
         <div className="links">
-          {navLinks.map(link => renderLink(link))}
+          {navLinks.map((link, index) => renderLink(link, index))}
 
           {/* For smaller screen */}
-          <div className={openNav ? "menuIcon inactive" : "menuIcon"} onClick={() => setOpenNav(!openNav)}>
-            <CiMenuFries className='icon' />
+          <div className={openNav ? "menuIcon inactive" : "menuIcon"} >
+            <div className="icons-container">
+
+              <a href="tel:1-206-940-9088" >
+                <TiPhoneOutline className='icon phone-icon' />
+              </a>
+
+              <CiMenuFries className='icon' onClick={() => setOpenNav(!openNav)} />
+            </div>
           </div>
           <div className={openNav ? "menu active" : "menu"}>
-
             <IoCloseOutline className='closeIcon' onClick={() => setOpenNav(!openNav)} />
             <a href="/" className='logoLink'>
               <img src="/logo.webp" alt="Fairhaven Yachts Logo" />
             </a>
-            {navLinks.map(link => renderLink(link))}
-
-
+            {navLinks.map((link, index) => renderLink(link, index))}
           </div>
         </div>
       </div>

@@ -68,10 +68,41 @@
                 cursor: pointer;
                 transition: opacity 1s linear;
 
-                .icon {
-                    width: 35px;
-                    height: 35px;
+
+                .icons-container {
+                    display: flex;
+                    gap: .8rem;
+
+                    @include md {
+                        a {
+                            display: inline;
+
+                            &:hover::before,
+                            &:focus::before {
+                                width: 0;
+                            }
+                        }
+                    }
+
+                    .phone-icon {
+                        border: 1px solid white;
+                        border-radius: 50%;
+                        padding: .4rem;
+
+                        &:hover {
+                            color: $color-accent-gold;
+                            border: 1px solid $color-accent-gold;
+                        }
+
+                    }
+
+                    .icon {
+                        width: 35px;
+                        height: 35px;
+                    }
+
                 }
+
 
                 @include md {
                     display: inline;
@@ -90,8 +121,8 @@
                 position: absolute;
                 z-index: 999;
                 top: 0;
-                right: -50%;
-                width: 50%;
+                right: -70%;
+                width: 70%;
                 height: 100svh;
                 background-color: rgba($color-background-navy, .95);
                 transition: all 1s ease-in-out;
@@ -131,7 +162,7 @@
 
                 &.active {
                     right: 0;
-
+        
                 }
 
             }

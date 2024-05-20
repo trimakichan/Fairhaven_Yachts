@@ -6,7 +6,7 @@ export const listingData = [
         price: '992,500',
         image: ['/ocean_alexander.webp', '/listingImages/listing2.jpg', '/listingImages/listing3.jpg', '/listingImages/listing4.jpg', '/listingImages/listing5.jpg', '/listingImages/listing4.jpg', '/listingImages/listing5.jpg'],
         city: 'Bainbridge Island',
-        state: 'Washington',
+        state: 'WA',
         status: 'new',
         
     },
@@ -17,7 +17,7 @@ export const listingData = [
         price: '700,000',
         image: ['/ocean_alexander2.webp'],
         city: 'La Conner',
-        state: 'Washington',
+        state: 'WA',
         status: 'new'
     },
     {
@@ -27,7 +27,7 @@ export const listingData = [
         price: '1,000,000',
         image: ['real_ships57.webp'],
         city: 'La Conner',
-        state: 'Washington',
+        state: 'WA',
         status: 'new'
     },
 ]

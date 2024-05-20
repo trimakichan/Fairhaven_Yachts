@@ -1,23 +1,25 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
+import { motion } from "framer-motion";
+import { useFadeInAnimSettings } from '../animations/animationHooks';
 import { listingData } from '../data/dammyData';
 import { useParams } from 'react-router-dom';
+import { Contexts } from '../contexts/contexts';
 
 import { GrLocation } from "react-icons/gr";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { IoIosArrowDropright } from "react-icons/io";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-import ImageSlider from '../components/ImageSlider/ImageSlider';
-
-
-
 const ListingDetails = () => {
+
+  const fadeInAnimSettings = useFadeInAnimSettings();
+
   const params = useParams();
+  const { isSliderOn, setIsSliderOn } = useContext(Contexts);
   const [data, setData] = useState([]);
   //  console.log(data.image)
   const [mainImage, setMainImage] = useState();
   const [imageIndex, setImageIndex] = useState(0);
-  const [isSliderOn, setIsSliderOn] = useState(false);
   const sliderRef = useRef(null);
   const sliderMobileRef = useRef(null);
   let touchStart = 0;
@@ -98,14 +100,17 @@ const ListingDetails = () => {
 
   return (
     <main className='listingDetails'>
-      <div className="wrapper">
-        <div className="listingDetails__title">
-          <h1>{data?.name}</h1>
+      <div className="wrapper listingDetails-title-bg">
+        <motion.div
+          className="listingDetails__title"
+          {...fadeInAnimSettings}
+        >
+          <h1><span>{data?.name}</span></h1>
           <div className='textMJost listingDetails__title__info '>
             <div>$ {data.price}</div>
             <div className='info-location'><GrLocation className="iconStyles" /> {data.city}, {data.state}</div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div className="listingDetails__images">
@@ -154,8 +159,11 @@ const ListingDetails = () => {
       </div>
 
       <div className="wrapper">
-        <div className="listingDetails__description">
-          <h2>Description</h2>
+        <motion.div
+          className="listingDetails__description"
+          {...fadeInAnimSettings}
+        >
+          <div className='test'><h2>Description</h2><div className='line'></div></div>
           <p>{data.description}</p>
 
           <div className="listingDetails-button-container">
@@ -163,7 +171,7 @@ const ListingDetails = () => {
             <a href="mailto:fairhavenyachtsales@gmail.com"><button className='email-button'>Email</button></a>
           </div>
 
-        </div>
+        </motion.div>
       </div>
 
 

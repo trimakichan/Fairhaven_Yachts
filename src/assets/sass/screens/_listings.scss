@@ -4,9 +4,17 @@
 .listings {
 
     &__hero {
-        @include heroSectionStyle('/listings1.jpg', center);
-        //overwriting background-size from cover in heroSectionStyle to contain. 
-        // background-size: contain;
+
+        width: 100%;
+        height: 0;
+        background: url('/listings1.jpg') no-repeat;
+        background-size: contain;
+        background-attachment: fixed;
+        padding-top: 30%;
+
+        @include md {
+            display: none;
+        }
     }
 
     &__sale {
@@ -20,16 +28,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 1rem; 
+            
+            @include md {
+                margin-top: 80px;
+            }
         }
 
         .sale-filter {
             width: 70%;
-            height: 150px;
+            height: 100px;
             border: 1px solid black;
         }
 
         .sale-listings {
+            width: 100%;
             margin: 2rem;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -53,7 +66,7 @@
     }
 
     &__section {
-             background-color: $color-background-light-grey;
+        background-color: $color-background-light-grey;
 
         .listings-section-content-container {
             width: 100%;
@@ -61,13 +74,14 @@
             background: url('/compass.svg') no-repeat;
             background-position: center;
             background-size: contain;
-            button {
-                    @include customButtonStyle($color-accent-gold, $color-text-secondary, $color-text-primary);
-                    width: fit-content;
-        }
 
-      
-    
+            button {
+                @include customButtonStyle($color-accent-gold, $color-text-secondary, $color-text-primary);
+                width: fit-content;
+            }
+
+
+
         }
     }
 }

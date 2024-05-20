@@ -2,6 +2,30 @@
 
 .listingDetails {
 
+    .listingDetails-title-bg {
+        margin-top: 80px;
+        background: url('/compass.svg') no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+
+    h1 {
+        span {
+                position: relative;
+        
+                &::after {
+                    position: absolute;
+                    background-color: rgba($color-accent-gold, .4);
+                    content: '';
+                    width: 98%;
+                    height: 35%;
+                    left: 8%;
+                    bottom: 5%;
+                    z-index: -1;
+                }
+            }
+    }
+
     &__title {
         display: flex;
         flex-direction: column;
@@ -87,11 +111,11 @@
                 }
 
                 .image-container {
-                  
+
 
                     img {
                         width: 200px;
-                            height: 150px;
+                        height: 150px;
                         object-fit: cover;
                         object-position: center;
                     }
@@ -108,8 +132,10 @@
             .mobile-fullSlider,
             .main-image {
                 position: relative;
+                z-index: 1;
                 width: 100%;
-                // border: 1px solid red;
+                height: 100svh;
+               // border: 1px solid red;
 
                 .arrow-left,
                 .arrow-right {
@@ -182,6 +208,24 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
+
+        .test {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 1rem;
+
+            h2 {
+                line-height: 120%;
+            }
+
+            .line {
+                height: 1px;
+                background-color: $color-accent-gold;
+                flex-grow: 1;
+            }
+        }
 
 
         .listingDetails-button-container {

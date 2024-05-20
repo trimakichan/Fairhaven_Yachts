@@ -10,6 +10,7 @@ const Listings = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
   return (
     <main className="listings">
+      
       <div className="listings__hero">
       </div>
 
@@ -25,7 +26,7 @@ const Listings = () => {
           </motion.div>
 
           <div className="sale-filter">
-
+            <p>Filter section will be aaded here later...</p>
           </div>
 
           <div className="sale-listings">

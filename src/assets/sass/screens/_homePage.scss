@@ -3,10 +3,8 @@
 .homePage {
 
     &__hero {
-
         padding: 5rem 5rem;
-        // width: 100%;
-        height: calc(100svh - 80px);
+        height: 100svh;
         background: url('/home1.jpg') no-repeat;
         background-position: 20% 40%;
         background-size: cover;
@@ -29,6 +27,8 @@
         }
 
         .hero-content {
+            //set the margin-top so navbar won't cover the hero title in mobile. 
+            margin-top: 80px;
             color: $color-text-secondary;
             background-color: transparent;
         
@@ -69,8 +69,6 @@
             gap: 1rem;
 
         }
-
-
 
         .homePage-intro-title {
             flex: 1;

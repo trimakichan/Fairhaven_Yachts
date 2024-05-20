@@ -21,3 +21,10 @@
     height: auto;
     color: rgba($color-accent-gold, .6)
 }
+
+.hoverEffectColor {
+
+    &:hover {
+        color: rgb(57, 77, 190);
+    }
+}

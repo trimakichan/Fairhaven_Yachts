@@ -71,7 +71,7 @@ const Contact = () => {
                     La Conner, WA 98257
                     USA
                   </div>
-                  <a href="https://maps.app.goo.gl/e25YNJMbJQ2vSAE37" target="_blank"><div className='linkText'>Get Direction&nbsp; &gt;</div></a>
+                  <a href="https://maps.app.goo.gl/e25YNJMbJQ2vSAE37" target="_blank"><div className='linkText hoverEffectColor'>Get Direction&nbsp; &gt;</div></a>
                 </div>
 
                 <div>

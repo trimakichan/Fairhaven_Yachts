@@ -72,22 +72,27 @@
 
 //For hero section (about and contact page)
 @mixin heroSectionStyle($imageLink, $position) {
+    
     width: 100%;
     height: 600px;
     padding: 5rem;
-    margin-bottom: 2rem;
+    // margin-bottom: 2rem;
     background: url($imageLink) no-repeat;
     background-position: $position;
     background-size: cover;
     background-attachment: fixed;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+    grid-template-columns: 1.5fr 1fr;
+    align-items: end;
+
+    @include lg {
+        padding: 2rem;
+    }
 
     @include md {
-        padding: 2rem;
         margin-bottom: 1rem;
         grid-template-columns: 1fr;
         align-items: end;
     }
 }
+
