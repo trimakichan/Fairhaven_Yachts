@@ -5,6 +5,9 @@ import Reviews from "../components/Reviews/Reviews"
 import { listingData } from "../data/dammyData";
 import { Link } from "react-router-dom";
 import { useFadeInAnimSettings } from "../animations/animationHooks";
+import AuthLogin from "../components/AuthLogin/AuthLogin";
+import AuthProfile from "../components/AuthProfile/AuthProfile";
+import AuthLogout from "../components/AuthLogout/AuthLogout";
 
 
 
@@ -26,6 +29,9 @@ const HomePage = () => {
 					<div className="buttons">
 						<button>Explore</button>
 						<button>Learn More</button>
+						<AuthLogin />
+						<AuthLogout />
+						<AuthProfile />
 					</div>
 				</div>
 			</section>
@@ -49,8 +55,8 @@ const HomePage = () => {
 			<article className="homePage__listings">
 				<div className="wrapper">
 					<div className="listing-title-container">
-						<motion.div 
-						className="listing-title"
+						<motion.div
+							className="listing-title"
 							{...fadeInAnimSettings}
 						>
 							<p>Yachts</p>
