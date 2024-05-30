@@ -5,11 +5,6 @@ import Reviews from "../components/Reviews/Reviews"
 import { listingData } from "../data/dammyData";
 import { Link } from "react-router-dom";
 import { useFadeInAnimSettings } from "../animations/animationHooks";
-import AuthLogin from "../components/AuthLogin/AuthLogin";
-import AuthProfile from "../components/AuthProfile/AuthProfile";
-import AuthLogout from "../components/AuthLogout/AuthLogout";
-
-
 
 const HomePage = () => {
 	const fadeInAnimSettings = useFadeInAnimSettings();
@@ -29,9 +24,6 @@ const HomePage = () => {
 					<div className="buttons">
 						<button>Explore</button>
 						<button>Learn More</button>
-						<AuthLogin />
-						<AuthLogout />
-						<AuthProfile />
 					</div>
 				</div>
 			</section>

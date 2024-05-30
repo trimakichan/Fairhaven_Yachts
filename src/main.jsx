@@ -4,8 +4,11 @@ import App from './App.jsx'
 import { ContextsProvider } from './contexts/contexts.jsx';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-const domain = import.meta.env.VITE_REACT_APP_DOMAIN
-const clientId = import.meta.env.VITE_REACT_APP_AUTH0_ID
+const domain = import.meta.env.VITE_REACT_APP_DOMAIN;
+const clientId = import.meta.env.VITE_REACT_APP_AUTH0_ID;
+console.log(domain, clientId)
+const redirectUri = `${window.location.origin}/fy-admin/dashboard`;
+console.log(redirectUri)
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -14,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       domain={domain}
       clientId={clientId}
       authorizationParams={{
-        redirect_uri: window.location.origin
+        redirect_uri: redirectUri
       }}
     >
       <ContextsProvider>
