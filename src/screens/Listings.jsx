@@ -1,16 +1,30 @@
+/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom";
+import { useQuery, useQueryClient } from "react-query";
 import { useFadeInAnimSettings } from "../animations/animationHooks"
 import AnchorIcon from "../components/AnchorIcon/AnchorIcon";
 
 import { listingData } from "../data/dammyData";
 import Card from '../components/Card/Card'
+import { useState } from "react";
+import { BiFontColor } from "react-icons/bi";
 
 const Listings = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
+  const queryKey = "boatListings"
+
+  const { isLoading, isError, error, data: boatListings } = useQuery({
+    queryFn: () => fetch(`/api/inventory/search?key=BjynVgQJU6PWzJVW0pdbs2bzu3hvdL&status=active`).then((res) => res.json()),
+    queryKey: [queryKey]
+
+  });
+
+  console.log(boatListings)
+
   return (
     <main className="listings">
-      
+
       <div className="listings__hero">
       </div>
 
@@ -29,10 +43,13 @@ const Listings = () => {
             <p>Filter section will be aaded here later...</p>
           </div>
 
-          <div className="sale-listings">
+          {/* <div className="sale-listings">
             {listingData.map((item, index) => <Card key={index} data={{ item, index }} />)}
             {listingData.map((item, index) => <Card key={index} data={{ item, index }} />)}
-          </div>
+          </div> */}
+
+          {boatListings.results.map((item, index) => <p key={index}>{item.DocumentID}</p>)}
+
 
           <button>Load More</button>
         </article>

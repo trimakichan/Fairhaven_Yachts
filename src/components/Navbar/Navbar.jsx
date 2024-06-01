@@ -6,9 +6,10 @@ import { CiMenuFries } from "react-icons/ci";
 import { IoCloseOutline } from "react-icons/io5";
 import { Contexts } from '../../contexts/contexts';
 
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
-
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { getSlidingAnimSettings } from '../../animations/animationHooks';
 import { TiPhoneOutline } from "react-icons/ti";
+import { slidingVariants } from '../../animations/animationVariants';
 
 const Navbar = () => {
   const { openNav, setOpenNav } = useContext(Contexts);
@@ -26,9 +27,9 @@ const Navbar = () => {
     const previous = scrollY.getPrevious();
 
     if (latest > previous && latest > 300 && !openNav) {
-      setNavHidden(true)
+      setNavHidden(true);
     } else {
-      setNavHidden(false)
+      setNavHidden(false);
     }
   })
 
@@ -40,10 +41,17 @@ const Navbar = () => {
     { href: '/contact', text: 'Contact' }
   ];
 
-  const renderLink = (link, index) => (
-    <a key={index} href={link.href}  >{link.text}</a>
-  )
+  const renderLink = (link, index) => {
 
+    return (
+      <motion.a
+        key={index}
+        href={link.href}
+        {...getSlidingAnimSettings(0.2, index)}
+      >{link.text}</motion.a>
+    )
+
+  }
 
   return (
     <motion.nav

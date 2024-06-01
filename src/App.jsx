@@ -2,15 +2,13 @@ import './assets/sass/main.scss';
 import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 
-import { Layout, ProtectedRoute } from './screens/Layout';
+import  Layout  from './screens/Layout';
 import HomePage from './screens/HomePage';
 import Listings from './screens/Listings';
 import SellYachts from './screens/SellYachts';
 import About from './screens/About'
 import Contact from './screens/Contact'
 import ListingDetails from './screens/ListingDetails';
-import AuthLogin from './components/AuthLogin/AuthLogin';
-import Dashboard from './components/Dashboard/Dashboard';
 
 const LayoutWithScrollToTop = ({ children }) => {
   const { pathname } = useLocation();
@@ -52,26 +50,18 @@ function App() {
         path: '/:id',
         element: <ListingDetails />
       },
-      // {
-      //   path: 'fy-admin',
-      //   element: <AuthLogin />
-      // },
-      // {
-      //   path: `fy-admin/dashboard`,
-      //   element: <Dashboard />
-      // }
     ]
   },
-    {
-      path: "fy-admin",
-      element: <ProtectedRoute />,
-      children: [
-        {
-          path: '/fy-admin/dashboard',
-          element: <Dashboard />
-        }
-      ]
-    }
+    // {
+    //   path: "fy-admin",
+    //   element: <ProtectedRoute />,
+    //   children: [
+    //     {
+    //       path: '/fy-admin/dashboard',
+    //       element: <Dashboard />
+    //     }
+    //   ]
+    // }
   ])
 
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -15,7 +16,7 @@ const Layout = () => {
                 <header>
                     <Navbar />
                 </header>
-                <div className={openNav && 'lock' || isSliderOn && 'lock'} >
+                <div className={openNav || isSliderOn ? 'lock' : ''} >
                     <div className='content' >
                         <Outlet />
                     </div>
@@ -28,29 +29,29 @@ const Layout = () => {
     )
 }
 
-const ProtectedRoute = () => {
-    const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-    const location = useLocation();
+// const ProtectedRoute = () => {
+//     const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+//     const location = useLocation();
 
-    useEffect(() => {
-        if (location.pathname === '/fy-admin' && !user) {
-            console.log("Attempting to redirect...");
-            loginWithRedirect();
-        }
+//     useEffect(() => {
+//         if (location.pathname === '/fy-admin' && !user) {
+//             console.log("Attempting to redirect...");
+//             loginWithRedirect();
+//         }
 
-    }, [loginWithRedirect, location.pathname, user]);
+//     }, [loginWithRedirect, location.pathname, user]);
 
-    // if (isLoading) {
-    //     return <div >Loading ...</div>;
-    // }
+//     // if (isLoading) {
+//     //     return <div >Loading ...</div>;
+//     // }
 
-    return isAuthenticated &&
-        (<div className="layout">
-            <Outlet />
-        </div>)
+//     return isAuthenticated &&
+//         (<div className="layout">
+//             <Outlet />
+//         </div>)
 
 
-}
+// }
 
-export { Layout, ProtectedRoute }
+export default Layout
 

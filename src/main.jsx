@@ -2,27 +2,32 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { ContextsProvider } from './contexts/contexts.jsx';
-import { Auth0Provider } from '@auth0/auth0-react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
-const domain = import.meta.env.VITE_REACT_APP_DOMAIN;
-const clientId = import.meta.env.VITE_REACT_APP_AUTH0_ID;
-console.log(domain, clientId)
-const redirectUri = `${window.location.origin}/fy-admin/dashboard`;
-console.log(redirectUri)
+const queryClient = new QueryClient();
 
+// import { Auth0Provider } from '@auth0/auth0-react';
+
+// const domain = import.meta.env.VITE_REACT_APP_DOMAIN;
+// const clientId = import.meta.env.VITE_REACT_APP_AUTH0_ID;
+// const redirectUri = `${window.location.origin}/fy-admin/dashboard`;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Auth0Provider
+    {/* <Auth0Provider
       domain={domain}
       clientId={clientId}
       authorizationParams={{
         redirect_uri: redirectUri
       }}
-    >
+    > */}
+    <QueryClientProvider client={queryClient}>
       <ContextsProvider>
         <App />
       </ContextsProvider>
-    </Auth0Provider>
+      <ReactQueryDevtools initialIsOpen />
+    </QueryClientProvider>
+    {/* </Auth0Provider> */}
   </React.StrictMode>,
 )

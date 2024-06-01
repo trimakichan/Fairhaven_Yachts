@@ -6,10 +6,24 @@ export default defineConfig({
   plugins: [react()],
 
   //remove later
-  server: {
-    port: 5174  //remove when in production!!
-  },
+  // server: {
+  //   port: 5174  //remove when in production!!
+  // },
+
   //-------------------
+
+  server: {
+
+    //change here before production?
+    proxy: {
+      // Proxying API requests
+      '/api': {
+        target: 'https://api.boats.com', // Target API
+        changeOrigin: true,  // Needed for virtual hosted sites
+        rewrite: (path) => path.replace(/^\/api/, ''),  // Rewrite path removing '/api'
+      }
+    }
+  },
 
   build: {
     // Configuration options for the production build

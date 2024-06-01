@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import { reviewsData } from '../../data/reviewsData';
 import { FaStar } from "react-icons/fa";
 
-import { useDelayedAnimSettings } from '../../animations/animationHooks';
+import { getDelayedFadeInAnimSettings } from '../../animations/animationHooks';
 
 
 const StarDisplay = ({ count }) => {
@@ -16,12 +16,11 @@ const StarDisplay = ({ count }) => {
 }
 
 const Review = ({ review: { review, index } }) => {
-    const settings = useDelayedAnimSettings();
-    const useDelayedAnim = { ...settings, transition: { delay: 0.8 * index, ease: "anticipate", duration: 1 }, custom: index }
+
     return (
         <motion.div
             className='review'
-            {...useDelayedAnim}
+            {...getDelayedFadeInAnimSettings(0.5, index)}
         >
             <div className="review__content">
                 <div className="stars-container">
