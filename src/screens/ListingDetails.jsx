@@ -1,23 +1,24 @@
-import { useEffect, useState, useRef, useContext } from 'react';
+/* eslint-disable no-unused-vars */
+import {  useState, useRef, useContext } from 'react';
 import { motion } from "framer-motion";
 import { useFadeInAnimSettings } from '../animations/animationHooks';
-import { listingData } from '../data/dammyData';
-import { useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import { Contexts } from '../contexts/contexts';
 
 import { GrLocation } from "react-icons/gr";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { IoIosArrowDropright } from "react-icons/io";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useBoatListingsById } from '../api/fetchListings';
 
 const ListingDetails = () => {
-
-  const fadeInAnimSettings = useFadeInAnimSettings();
-
-  const params = useParams();
+    const fadeInAnimSettings = useFadeInAnimSettings();
+  const {id} = useParams();
+  console.log(id)
+  const {data: {results : boatListing}} = useBoatListingsById(id);
+  console.log(boatListing)
+ 
   const { isSliderOn, setIsSliderOn } = useContext(Contexts);
-  const [data, setData] = useState([]);
-  //  console.log(data.image)
   const [mainImage, setMainImage] = useState();
   const [imageIndex, setImageIndex] = useState(0);
   const sliderRef = useRef(null);
@@ -25,21 +26,8 @@ const ListingDetails = () => {
   let touchStart = 0;
   let touchEnd = 0;
 
-  useEffect(() => {
 
-    if (params.id) {
-      const list = listingData.filter(item => item.id === Number(params.id));
-      if (list.length > 0) {
-        setData(list[0]);
-        setMainImage(list[0].image[0])
-      }
-    }
-  }, [params])
-
-
-
-
-  //Scroll Horizontally on Mobile by touching. 
+  // Scroll Horizontally on Mobile by touching. 
   const handleTouchStart = (e) => {
     // get the initial touch position
     touchStart = e.targetTouches[0].clientX;
@@ -49,7 +37,6 @@ const ListingDetails = () => {
   const handleTouchMove = (e) => {
     // update the touch position
     touchEnd = e.targetTouches[0].clientX;
-
   }
 
   const handleTouchEnd = () => {
@@ -83,14 +70,14 @@ const ListingDetails = () => {
 
     if (direction === 'left') {
       if (imageIndex === 0) {
-        setImageIndex(data.image.length - 1);
+        setImageIndex(boatListing.Images.length - 1);
       } else {
         setImageIndex(imageIndex - 1);
       }
     }
 
     if (direction === 'right') {
-      if (imageIndex === data.image.length - 1) {
+      if (imageIndex === boatListing.Images.length - 1) {
         setImageIndex(0)
       } else {
         setImageIndex(imageIndex + 1);
@@ -98,26 +85,26 @@ const ListingDetails = () => {
     }
   }
 
-  return (
+  return boatListing && (
     <main className='listingDetails'>
       <div className="wrapper listingDetails-title-bg">
         <motion.div
           className="listingDetails__title"
           {...fadeInAnimSettings}
         >
-          <h1><span>{data?.name}</span></h1>
+          <h1><span>{boatListing.MakeString}</span></h1>
           <div className='textMJost listingDetails__title__info '>
-            <div>$ {data.price}</div>
-            <div className='info-location'><GrLocation className="iconStyles" /> {data.city}, {data.state}</div>
+            {/* <div>$ {boatListing[1].price}</div> */}
+            {/* <div className='info-location'><GrLocation className="iconStyles" /> {boatListing.BoatLocation.BoatCityName}, {boatListing.BoatLocation.BoatStateCode}</div> */}
           </div>
         </motion.div>
       </div>
 
-      <div className="listingDetails__images">
+      {/* <div className="listingDetails__images">
         <div className="wrapper">
 
           <div className="listingDetails__images__main">
-            <img src={mainImage} alt={`${data.name} image`} />
+            <img src={boatListing.Images[0].Uri} alt={`${boatListing.MakeString} image`} />
           </div>
           <div className="listingDetails__images__slider">
             <IoIosArrowDropleft className='arrowStyles' onClick={() => moveSlide('click', 'left')} />
@@ -128,7 +115,7 @@ const ListingDetails = () => {
             // onTouchEnd={handleTouchEnd}
 
             >
-              {data?.image?.map((image, index) => {
+              {boatListing.Images.map((image, index) => {
                 return <div key={index} className="image-container" onClick={() => setMainImage(image)}><img key={index} src={image} alt='' /> </div>
               })}
             </div>
@@ -138,7 +125,7 @@ const ListingDetails = () => {
 
           {/* mobile screen */}
 
-          <div className='listingDetails__images__mobile'>
+          {/* <div className='listingDetails__images__mobile'>
             <div className={isSliderOn ? "mobile-fullSlider" : ""}>
               <div
                 className="main-image"
@@ -149,14 +136,14 @@ const ListingDetails = () => {
               >
                 {isSliderOn && <IoIosCloseCircleOutline className='close-icon' onClick={() => setIsSliderOn(!isSliderOn)} />}
                 <IoIosArrowDropleft className='arrow-left' onClick={() => changeImageIndex('left')} />
-                <img src={data?.image?.[imageIndex]} alt={`${data.name} Image`} onClick={() => setIsSliderOn(!isSliderOn)} />
+                <img src={boatListing.Images[imageIndex]} alt={`${boatListing.MakeString} Image`} onClick={() => setIsSliderOn(!isSliderOn)} />
                 <IoIosArrowDropright className='arrow-right' onClick={() => changeImageIndex('right')} />
               </div>
             </div>
-          </div>
+          </div> */}
 
-        </div>
-      </div>
+        {/* </div> */}
+      {/* </div>  */}
 
       <div className="wrapper">
         <motion.div
@@ -164,7 +151,7 @@ const ListingDetails = () => {
           {...fadeInAnimSettings}
         >
           <div className='test'><h2>Description</h2><div className='line'></div></div>
-          <p>{data.description}</p>
+          {/* <p>{boatListing.description}</p> */}
 
           <div className="listingDetails-button-container">
             <a href="tel:1-206-940-9088"><button className='call-button'>Call</button></a>
@@ -176,6 +163,8 @@ const ListingDetails = () => {
 
 
     </main>
+
+    
   )
 
 }
