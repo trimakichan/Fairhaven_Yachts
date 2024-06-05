@@ -1,21 +1,73 @@
 @use '../../assets/sass/abstracts/' as *;
 
 .imageSlider {
-    width: 500px;
-    height: 280px;
-    // margin: 0 auto;
-    // height: 100%;
-    // position: relative;
-    background: url('/ocean_alexander.webp') no-repeat;
+    padding: 2rem;
+    position: absolute;
+    width: 100%;
+    height: 100svh;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(black, .85);
+    display: flex;
+    align-items: end;
 
-    overflow: hidden;
-    
-    .slideStyles {
-            width: 500px;
-                height: 280px;
-        // width: 100%;
-        // height: 100%;
-        background-position: center;
-        background-size: contain ;
+    .close-button,
+    .arrow {
+        width: 60px;
+        height: auto;
+        color: $color-primary;
+        cursor: pointer; 
     }
+
+    .close-button {
+        position: absolute;
+        top: 14%;
+        right: 2%;
+        
+    }
+
+    .arrow {
+        top: 45%;
+    }
+
+    .slider-content {
+        width: 100%;
+        height: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            // display: inline-block;
+
+        }
+
+    }
+
+
 }
+
+// .imageSlider {
+//     width: 500px;
+//     height: 280px;
+//     // margin: 0 auto;
+//     // height: 100%;
+//     // position: relative;
+//     background: url('/ocean_alexander.webp') no-repeat;
+
+//     overflow: hidden;
+
+//     .slideStyles {
+//             width: 500px;
+//                 height: 280px;
+//         // width: 100%;
+//         // height: 100%;
+//         background-position: center;
+//         background-size: contain ;
+//     }
+// }

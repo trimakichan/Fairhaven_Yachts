@@ -6,10 +6,20 @@ export const Contexts = createContext({})
 export const ContextsProvider = ({ children }) => {
     const [openNav, setOpenNav] = useState(false);
     const [isSliderOn, setIsSliderOn] = useState(false);
+    const [isImageSliderOn, setIsImageSliderOn] = useState(false);
 
-    return ( 
-        <Contexts.Provider value={{ openNav, setOpenNav, isSliderOn, setIsSliderOn }}>
-            {children}
-        </Contexts.Provider>
-    )
+    return (
+      <Contexts.Provider
+        value={{
+          openNav,
+          setOpenNav,
+          isSliderOn,
+          setIsSliderOn,
+          isImageSliderOn,
+          setIsImageSliderOn,
+        }}
+      >
+        {children}
+      </Contexts.Provider>
+    );
 }

@@ -8,7 +8,7 @@ import { Contexts } from "../contexts/contexts";
 import Footer from "../components/Footer/Footer";
 
 const Layout = () => {
-    const { openNav, setOpenNav, isSliderOn, setIsSliderOn } = useContext(Contexts);
+    const { openNav, setOpenNav, isSliderOn, isImageSliderOn } = useContext(Contexts);
 
     return (
         <>
@@ -16,7 +16,7 @@ const Layout = () => {
                 <header>
                     <Navbar />
                 </header>
-                <div className={openNav || isSliderOn ? 'lock' : ''} >
+                <div className={openNav || isSliderOn  || isImageSliderOn ? 'lock' : ''}   >
                     <div className='content' >
                         <Outlet />
                     </div>

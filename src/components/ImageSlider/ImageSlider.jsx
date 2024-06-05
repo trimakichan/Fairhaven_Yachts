@@ -1,25 +1,66 @@
-import { useEffect, useState } from "react"
+import { useCallback, useContext, useState } from "react";
+import "./imageSlider.scss";
+import {
+  IoIosArrowDropleft,
+  IoIosArrowDropright,
+  IoIosCloseCircleOutline,
+} from "react-icons/io";
 
-const ImageSlider = ({ slides }) => {
-    console.log(slides)
-    const slidesArray = slides
-    console.log(slidesArray)
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const imageUrl = slidesArray[currentIndex];
-    // console.log(slidesArray)
+import { Contexts } from "../../contexts/contexts";
 
-    if (!slides) {
-        return <div>No slides available.</div>;
+const ImageSlider = ({ data: { images, index } }) => {
+  const { setIsImageSliderOn } = useContext(Contexts);
+  console.log(images);
+  const slides = images?.map((item) => item.Uri);
+
+  const [currentIndex, setCurrentIndex] = useState(index);
+
+  const changeSlide = useCallback((direction) => {
+    if (direction === "left") {
+      if (currentIndex === 0) {
+        setCurrentIndex(slides.length - 1);
+      } else {
+        setCurrentIndex(currentIndex - 1);
+      }
+    } else if (direction === "right") {
+      if (currentIndex === slides.length - 1) {
+        setCurrentIndex(0);
+      } else {
+        setCurrentIndex(currentIndex + 1);
+      }
     }
+  }, [currentIndex, slides.length])
 
-    return (
-        <div className="imageSlider">
-            {/* <img src={imageUrl}></img> */}
-            {/* <div style={{ background: `url(${imageUrl})` }} className="slideStyles"></div> */}
+  if (!images) {
+    return <div>No slides available.</div>;
+  }
 
-            <div>test</div>
-        </div>
-    )
-}
+  return (
+    <div className="imageSlider">
+      {slides && slides.length > 0 && (
+        <>
+          <IoIosCloseCircleOutline
+            className="close-button"
+            aria-label="Close Image Slider"
+            onClick={() => setIsImageSliderOn(false)}
+          />
+          <div className="slider-content">
+            <IoIosArrowDropleft
+              className="arrow"
+              aria-label="Previous Slide"
+              onClick={() => changeSlide("left")}
+            />
+            <img src={slides[currentIndex]} alt="one of sliding images" />
+            <IoIosArrowDropright
+              className="arrow"
+              aria-label="Next Slide"
+              onClick={() => changeSlide("right")}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
-export default ImageSlider
+export default ImageSlider;
