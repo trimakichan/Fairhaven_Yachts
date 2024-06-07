@@ -9,11 +9,45 @@ import { Link } from "react-router-dom";
 import { useFadeInAnimSettings } from "../animations/animationHooks";
 import { useBoatListings } from "../api/fetchListings";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
+  const [newListings, setNewListings] = useState(null)
+  console.log(newListings)
 
   const { isLoading, isError, error, isFetching, data: listings} = useBoatListings();
+
+  //START HERE
+  useEffect(() => {
+      if (listings) {
+        const currentDate = new Date();
+        const cutoffDate = new Date(currentDate);
+        cutoffDate.setMonth(currentDate.getMonth() - 3);
+
+        const newListings = listings.filter((item) => {
+          const itemDate = new Date(item.ItemReceivedDate);
+          return itemDate > cutoffDate;
+        });
+        setNewListings(newListings);
+      }
+
+
+  }, [listings])
+
+  // if(listings) {
+  //   const currentDate = new Date();
+  //   const cutoffDate = new Date(currentDate);
+  //   cutoffDate.setMonth(currentDate.getMonth() - 3);
+
+  //   const newListings = listings.filter((item) => {
+  //     const itemDate = new Date(item.LastModificationDate);
+  //     return itemDate > cutoffDate 
+  //   });
+  //     setNewListings(newListings);
+   
+  // }
+  // console.log(listings);
   console.log('From Home', "isLoading", isLoading, "isFetching", isFetching);
 
   return (

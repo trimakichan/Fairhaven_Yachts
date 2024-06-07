@@ -1,45 +1,72 @@
 /* eslint-disable no-unused-vars */
 import { useState, useRef, useContext, useEffect } from "react";
 import { motion } from "framer-motion";
+import parse from "html-react-parser";
 import { useFadeInAnimSettings } from "../animations/animationHooks";
 import { useParams } from "react-router-dom";
 import { Contexts } from "../contexts/contexts";
-
+//icons
 import { GrLocation } from "react-icons/gr";
-import { IoIosArrowDropleft } from "react-icons/io";
-import { IoIosArrowDropright } from "react-icons/io";
-import { IoIosCloseCircleOutline } from "react-icons/io";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+
+import {
+  PiArrowSquareLeftDuotone,
+  PiArrowSquareRightDuotone,
+} from "react-icons/pi";
+
 import { useBoatListingsById } from "../api/fetchListings";
 import ImageSlider from "../components/ImageSlider/ImageSlider";
+import MobileImageList from "../components/MobileImageList/MobileImageList";
 
 const ListingDetails = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
   const { id } = useParams();
   const { data: boatListing } = useBoatListingsById(id);
-
-  const { isSliderOn, setIsSliderOn } = useContext(Contexts);
+  const { isMobileSliderOn, setIsMobileSliderOn } = useContext(Contexts);
   const { isImageSliderOn, setIsImageSliderOn } = useContext(Contexts);
-  console.log(isImageSliderOn);
-  // console.log(boatListing.Images)
-
   const [mainImage, setMainImage] = useState(null);
   const [mainImageIndex, setMainImageIndex] = useState(0);
-  console.log(mainImageIndex)
   const [imageIndex, setImageIndex] = useState(0);
-
-  // console.log(imageIndex)
   const sliderRef = useRef(null);
   const sliderMobileRef = useRef(null);
-  // console.log(sliderMobileRef)
 
-  let touchStart = 0;
-  let touchEnd = 0;
+  console.log(boatListing?.GeneralBoatDescription);
+  console.log(boatListing?.AdditionalDetailDescription);
 
   useEffect(() => {
     if (boatListing?.Images?.length > 0) {
+      console.log("here");
       setMainImage(boatListing.Images[0].Uri);
     }
   }, [boatListing]);
+
+  const setFixedFontSize = (text) => {
+    if (!text) return;
+
+    let description;
+    //remove all the styles in the html strings. 
+    description = text.replace(/ style="[^"]*"/g, "");
+    return description.replace(
+      /<strong>customContactInformation<\/strong><br>/g,
+      ""
+    );
+  };
+
+  const boatDescription = setFixedFontSize(
+    boatListing?.GeneralBoatDescription[0]
+  );
+
+  let additionalDescription;
+  const additionalinfo = boatListing?.AdditionalDetailDescription;
+  if (additionalinfo?.length > 0) {
+    setFixedFontSize(additionalinfo[additionalinfo.length - 1]);
+    additionalDescription = setFixedFontSize(
+      additionalinfo[additionalinfo.length - 1]
+    );
+  }
+
+  let touchStart = 0;
+  let touchEnd = 0;
 
   // Scroll Horizontally on Mobile by touching.
   const handleTouchStart = (e) => {
@@ -82,10 +109,8 @@ const ListingDetails = () => {
     if (direction === "left") {
       if (imageIndex === 0) {
         setImageIndex(boatListing.Images.length - 1);
-        console.log(imageIndex);
       } else {
         setImageIndex(imageIndex - 1);
-        console.log(imageIndex);
       }
     }
 
@@ -93,9 +118,7 @@ const ListingDetails = () => {
       if (imageIndex === boatListing.Images.length - 1) {
         setImageIndex(0);
       } else {
-        console.log(imageIndex);
         setImageIndex(imageIndex + 1);
-        console.log(imageIndex);
       }
     }
   };
@@ -131,7 +154,6 @@ const ListingDetails = () => {
 
         {/* Desktop Image Section */}
         <div className="listingDetails__images">
-
           {isImageSliderOn && (
             <ImageSlider
               data={{ images: boatListing.Images, index: mainImageIndex }}
@@ -152,8 +174,8 @@ const ListingDetails = () => {
             </div>
 
             <div className="listingDetails__images__slider">
-              <IoIosArrowDropleft
-                className="arrowStyles"
+              <PiArrowSquareLeftDuotone
+                className="arrow-style"
                 onClick={() => moveSlide("click", "left")}
               />
 
@@ -184,46 +206,46 @@ const ListingDetails = () => {
                 })}
               </div>
 
-              <IoIosArrowDropright
-                className="arrowStyles"
+              <PiArrowSquareRightDuotone
+                className="arrow-style"
                 onClick={() => moveSlide("click", "right")}
               />
             </div>
+          </div>
 
-            {/* -------------------------------------------------------------------------------------- */}
+          {/* -------------------------------------------------------------------------------------- */}
 
-            {/* Mobile Image Section */}
+          {/* Mobile Image Section */}
 
-            <div className="listingDetails__images__mobile">
-              <div className={isSliderOn ? "mobile-fullSlider" : ""}>
-                <div
-                  className="main-image"
-                  // ref={sliderMobileRef}
-                  // onTouchStart={handleTouchStart}
-                  // onTouchMove={handleTouchMove}
-                  // onTouchEnd={handleTouchEnd}
-                >
-                  {isSliderOn && (
-                    <IoIosCloseCircleOutline
-                      className="close-icon"
-                      // onClick={() => setIsSliderOn(!isSliderOn)}
-                    />
-                  )}
-                  <IoIosArrowDropleft
-                    className="arrow-left"
-                    // onClick={() => changeImageIndex("left")}
-                  />
-                  <img
-                    src={boatListing.Images[imageIndex].Uri}
-                    alt={`${boatListing.MakeString} Image`}
-                    // onClick={() => setIsSliderOn(!isSliderOn)}
-                  />
-                  <IoIosArrowDropright
-                    className="arrow-right"
-                    // onClick={() => changeImageIndex("right")}
-                  />
-                </div>
-              </div>
+          <div className="listingDetails__images__mobile">
+            {isMobileSliderOn && (
+              <MobileImageList images={boatListing.Images} />
+            )}
+
+            <div
+              className="main-image"
+              ref={sliderMobileRef}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <PiArrowSquareLeftDuotone
+                className="arrow-small-style arrowLeftPositon"
+                onClick={() => changeImageIndex("left")}
+              />
+
+              <img
+                src={boatListing.Images[imageIndex].Uri}
+                alt={`${boatListing.MakeString} Image`}
+                onClick={() => setIsMobileSliderOn(!isMobileSliderOn)}
+              />
+
+              <PiArrowSquareRightDuotone
+                className="arrow-small-style arrowRightPositon"
+                onClick={() => changeImageIndex("right")}
+              />
+
+              {/* </div> */}
             </div>
           </div>
         </div>
@@ -235,20 +257,27 @@ const ListingDetails = () => {
             className="listingDetails__description"
             {...fadeInAnimSettings}
           >
-            <div className="test">
+            <div className="description-title">
               <h2>Description</h2>
               <div className="line"></div>
             </div>
-            {/* <p>{boatListing.description}</p> */}
 
-            <div className="listingDetails-button-container">
+            <div className="boat-description">
+              {boatDescription && <p>{parse(boatDescription)}</p>}
+
+              {additionalDescription && (
+                <p>{parse(additionalDescription)}</p>
+              )}
+            </div>
+
+            {/* <div className="listingDetails-button-container">
               <a href="tel:1-206-940-9088">
                 <button className="call-button">Call</button>
               </a>
               <a href="mailto:fairhavenyachtsales@gmail.com">
                 <button className="email-button">Email</button>
               </a>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </main>

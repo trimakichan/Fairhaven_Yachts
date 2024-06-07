@@ -22,6 +22,23 @@
     color: rgba($color-accent-gold, .6)
 }
 
+.close-style, 
+.arrow-style {
+    width: 60px;
+        height: auto;
+        color: $color-accent-gold;
+        cursor: pointer;
+}
+
+.close-small-style,
+.arrow-small-style {
+    width: 45px;
+    height: auto;
+    color: $color-background-light-grey;
+    background-color: rgba(black, .5);
+    cursor: pointer;
+}
+
 .hoverEffectColor {
 
     &:hover {

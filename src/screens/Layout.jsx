@@ -8,26 +8,25 @@ import { Contexts } from "../contexts/contexts";
 import Footer from "../components/Footer/Footer";
 
 const Layout = () => {
-    const { openNav, setOpenNav, isSliderOn, isImageSliderOn } = useContext(Contexts);
+  const { openNav, setOpenNav, isMobileSliderOn, isImageSliderOn } =
+    useContext(Contexts);
 
-    return (
-        <>
-            <div className="layout" onClick={() => openNav && setOpenNav(!openNav)}>
-                <header>
-                    <Navbar />
-                </header>
-                <div className={openNav || isSliderOn  || isImageSliderOn ? 'lock' : ''}   >
-                    <div className='content' >
-                        <Outlet />
-                    </div>
-                    <Footer />
-                </div>
-
-
-            </div>
-        </>
-    )
-}
+  return (
+    <>
+      <div className="layout" onClick={() => openNav && setOpenNav(!openNav)}>
+        <header>
+          <Navbar />
+        </header>
+        <div className={openNav || isImageSliderOn ? "lock" : ""}>
+          <div className="content">
+            <Outlet />
+          </div>
+          <Footer />
+        </div>
+      </div>
+    </>
+  );
+};
 
 // const ProtectedRoute = () => {
 //     const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -50,8 +49,6 @@ const Layout = () => {
 //             <Outlet />
 //         </div>)
 
-
 // }
 
-export default Layout
-
+export default Layout;

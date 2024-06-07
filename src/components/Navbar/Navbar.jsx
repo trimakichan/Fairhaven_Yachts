@@ -1,26 +1,19 @@
 /* eslint-disable no-unused-vars */
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import "./navbar.scss";
 
-import { CiMenuFries } from "react-icons/ci";
-import { IoCloseOutline } from "react-icons/io5";
 import { Contexts } from "../../contexts/contexts";
-
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { getSlidingAnimSettings } from "../../animations/animationHooks";
+import { CiMenuFries } from "react-icons/ci";
+import { IoCloseOutline } from "react-icons/io5";
 import { TiPhoneOutline } from "react-icons/ti";
-import { slidingVariants } from "../../animations/animationVariants";
 
 const Navbar = () => {
   const { openNav, setOpenNav } = useContext(Contexts);
-
   const { scrollY } = useScroll();
   const [navHidden, setNavHidden] = useState(false);
-
-  // useEffect(() => {
-  //   const unsub = scrollY.on("change", (latest) => console.log(latest))
-  //   return () => unsub();
-  // }, [scrollY])
+  const { isNavAnimFinished, setIsNavAnimFinished } = useContext(Contexts);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -42,16 +35,21 @@ const Navbar = () => {
 
   //Optimize this code later
   const renderLink = (link, index, isMobileLinks = false) => {
-    if (isMobileLinks)
+    if (isMobileLinks) {
       return (
         <motion.a
           key={index}
           href={link.href}
           {...getSlidingAnimSettings(0.2, index)}
+          // onAnimationComplete={() => {
+          //   setIsNavAnimFinished(true);
+          //   console.log("Completed animating");
+          // }}
         >
           {link.text}
         </motion.a>
       );
+    }
 
     return (
       <motion.a key={index} href={link.href}>
@@ -81,7 +79,7 @@ const Navbar = () => {
           {navLinks.map((link, index) => renderLink(link, index))}
 
           {/* For smaller screen */}
-          <div className={openNav ? "menuIcon inactive" : "menuIcon"}>
+          <div className={openNav ? "menu-icon inactive" : "menu-icon"}>
             <div className="icons-container">
               <a href="tel:1-206-940-9088">
                 <TiPhoneOutline className="icon phone-icon" />
@@ -95,13 +93,20 @@ const Navbar = () => {
           </div>
           <div className={openNav ? "menu active" : "menu"}>
             <IoCloseOutline
-              className="closeIcon"
-              onClick={() => setOpenNav(!openNav)}
+              className="close-icon"
+              onClick={() => {
+                setOpenNav(!openNav);
+              }}
             />
-            <a href="/" className="logoLink">
+            <a href="/" className="logo-link">
               <img src="/logo.webp" alt="Fairhaven Yachts Logo" />
             </a>
-            {navLinks.map((link, index) => renderLink(link, index, true))}
+            <div className="menu-nav-links">
+              {navLinks.map((link, index) => renderLink(link, index, true))}
+            </div>
+            <div className="textSPlayfair menu-nav-footer">
+              FAIRHAVEN YACHTS
+            </div>
           </div>
         </div>
       </div>

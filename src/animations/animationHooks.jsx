@@ -26,6 +26,7 @@ export function getDelayedFadeInAnimSettings(delaySpeed, index) {
 }
 
 export function getSlidingAnimSettings(delaySpeed, index) {
+
   return {
     variants: slidingVariants,
     initial: 'initial',
@@ -36,7 +37,8 @@ export function getSlidingAnimSettings(delaySpeed, index) {
       ease: "anticipate",
       duration: 1
     },
-    custom: index
+    custom: index,
+  
   }
 }
 
