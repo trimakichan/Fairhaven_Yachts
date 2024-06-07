@@ -10,45 +10,35 @@ import { useFadeInAnimSettings } from "../animations/animationHooks";
 import { useBoatListings } from "../api/fetchListings";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { getCutoffDate } from "../utilities/utilities";
 
 const HomePage = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
-  const [newListings, setNewListings] = useState(null)
-  console.log(newListings)
+  const [newListings, setNewListings] = useState(null);
+  console.log(newListings);
 
-  const { isLoading, isError, error, isFetching, data: listings} = useBoatListings();
+  const {
+    isLoading,
+    isError,
+    error,
+    isFetching,
+    data: listings,
+  } = useBoatListings();
 
-  //START HERE
   useEffect(() => {
-      if (listings) {
-        const currentDate = new Date();
-        const cutoffDate = new Date(currentDate);
-        cutoffDate.setMonth(currentDate.getMonth() - 3);
+    // Retrieve listings that were created less than three months ago and have an active sales status.
+    if (listings) {
+      const cutoffDate = getCutoffDate();
+      const newListings = listings.filter((item) => {
+        const itemDate = new Date(item.ItemReceivedDate);
+        // console.log(itemDate)
+        return itemDate > cutoffDate && item.SalesStatus === "Active";
+      });
+      setNewListings(newListings);
+    }
+  }, [listings]);
 
-        const newListings = listings.filter((item) => {
-          const itemDate = new Date(item.ItemReceivedDate);
-          return itemDate > cutoffDate;
-        });
-        setNewListings(newListings);
-      }
-
-
-  }, [listings])
-
-  // if(listings) {
-  //   const currentDate = new Date();
-  //   const cutoffDate = new Date(currentDate);
-  //   cutoffDate.setMonth(currentDate.getMonth() - 3);
-
-  //   const newListings = listings.filter((item) => {
-  //     const itemDate = new Date(item.LastModificationDate);
-  //     return itemDate > cutoffDate 
-  //   });
-  //     setNewListings(newListings);
-   
-  // }
-  // console.log(listings);
-  console.log('From Home', "isLoading", isLoading, "isFetching", isFetching);
+  console.log("From Home", "isLoading", isLoading, "isFetching", isFetching);
 
   return (
     <main className="homePage">
@@ -103,11 +93,10 @@ const HomePage = () => {
 
           <div className="listings-container">
             {isLoading && <div>Loading....</div>}
-            {listings &&
-              listings.map((item, index) => (
-                <p key={index}>{item.DocumentID}</p>
-              ))}
-            {/* {listingData.map((item, index) => <Card key={index} data={{ item, index }} />)} */}
+            {newListings &&
+              newListings.map((listing, index) => {
+                return <Card key={index} item={listing} />;
+              })}
           </div>
 
           <div className="buttonContainer">

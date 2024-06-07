@@ -31,7 +31,7 @@
             margin-top: 80px;
             color: $color-text-secondary;
             background-color: transparent;
-        
+
             .spanText {
                 font-size: clamp(1.7rem, 3vw + 1rem, 3rem);
             }
@@ -131,12 +131,23 @@
 
         .listings-container {
             margin: 2rem;
-            display: flex;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+
 
             @include md {
                 margin: 1rem 0;
                 flex-direction: column;
+            }
+
+            @include md {
+                margin: 1rem 0;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @include sm {
+                grid-template-columns: 1fr;
             }
 
         }
@@ -175,7 +186,7 @@
     &__section2 {
         background-color: $color-background-light-grey;
 
-    //change the class name
+        //change the class name
         @include md {
             .imageOrder {
                 order: 2;

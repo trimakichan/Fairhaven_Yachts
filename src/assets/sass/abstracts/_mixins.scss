@@ -13,6 +13,12 @@
     }
 }
 
+@mixin mdMinWidth {
+        @media (min-width: 769px){
+                @content;
+            }
+}
+
 @mixin lg {
     @media (max-width: 1024px) {
         @content;
@@ -35,7 +41,7 @@
     color: $textColor;
     border: 1px solid $borderColor;
     background-color: $bgColor;
-    cursor: pointer;
+
 }
 
 @mixin buttonStyleSimple {
@@ -44,18 +50,9 @@
     color: $color-text-primary;
     border: 1px solid $color-text-primary;
     background-color: transparent;
-    cursor: pointer;
+
 }
 
-@mixin buttonStlyeSmall {
-    padding: .2rem .5rem;
-    font-family: $font-family-primary;
-    font-weight: bold;
-    border-radius: 5px;
-    background-color: rgba($color-primary, .6);
-    border: none;
-    cursor: pointer;
-}
 
 //For section1 and section2 containers
 @mixin sectionContentStyle {

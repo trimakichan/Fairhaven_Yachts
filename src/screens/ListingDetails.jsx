@@ -13,6 +13,17 @@ import {
   PiArrowSquareLeftDuotone,
   PiArrowSquareRightDuotone,
 } from "react-icons/pi";
+import { LiaCalendarDaySolid } from "react-icons/lia";
+import { IoBoat } from "react-icons/io5";
+import { PiBoat } from "react-icons/pi";
+import { TbTools } from "react-icons/tb";
+import { PiEngine } from "react-icons/pi";
+import { GiBoatPropeller } from "react-icons/gi";
+
+import { BsClockHistory } from "react-icons/bs";
+import { CiRuler } from "react-icons/ci";
+import { GiSailboat } from "react-icons/gi";
+import { CiViewList } from "react-icons/ci";
 
 import { useBoatListingsById } from "../api/fetchListings";
 import ImageSlider from "../components/ImageSlider/ImageSlider";
@@ -30,8 +41,8 @@ const ListingDetails = () => {
   const sliderRef = useRef(null);
   const sliderMobileRef = useRef(null);
 
-  console.log(boatListing?.GeneralBoatDescription);
-  console.log(boatListing?.AdditionalDetailDescription);
+  // console.log(boatListing?.GeneralBoatDescription);
+  // console.log(boatListing?.AdditionalDetailDescription);
 
   useEffect(() => {
     if (boatListing?.Images?.length > 0) {
@@ -44,7 +55,7 @@ const ListingDetails = () => {
     if (!text) return;
 
     let description;
-    //remove all the styles in the html strings. 
+    //remove all the styles in the html strings.
     description = text.replace(/ style="[^"]*"/g, "");
     return description.replace(
       /<strong>customContactInformation<\/strong><br>/g,
@@ -152,8 +163,8 @@ const ListingDetails = () => {
         </div>
         {/* -------------------------------------------------------------------------------------- */}
 
-        {/* Desktop Image Section */}
         <div className="listingDetails__images">
+          {/* Desktop Image Section */}
           {isImageSliderOn && (
             <ImageSlider
               data={{ images: boatListing.Images, index: mainImageIndex }}
@@ -244,8 +255,112 @@ const ListingDetails = () => {
                 className="arrow-small-style arrowRightPositon"
                 onClick={() => changeImageIndex("right")}
               />
+            </div>
+          </div>
 
-              {/* </div> */}
+          {/* Specification Section ---------------------------------------------- */}
+          {/* make a component to remove code redundancies later */}
+          <div className="boat-specs textSRoboto ">
+            <div className="spec-wrapper ">
+              <LiaCalendarDaySolid className="spec-icon" />
+              <div>
+                <div className="bold">YEAR</div>
+                <div>{boatListing.ModelYear ? boatListing.ModelYear : "-"}</div>
+              </div>
+            </div>
+
+            <div className="spec-wrapper">
+              <TbTools className="spec-icon" />
+              <div>
+                <div className="bold">BUILDER</div>
+                <div>
+                  {boatListing.BuilderName ? boatListing.BuilderName : "-"}
+                </div>
+              </div>
+            </div>
+
+            <div className="spec-wrapper">
+              <GiSailboat className="spec-icon" />
+              <div>
+                <div className="bold">MODEL</div>
+                <div>{boatListing.Model ? boatListing.Model : "-"}</div>
+              </div>
+            </div>
+
+            <div className="spec-wrapper">
+              <PiEngine className="spec-icon" />
+              <div>
+                <div className="bold">ENGINE</div>
+                <div>
+                  {boatListing.Engines[0].Make
+                    ? `${boatListing.Engines[0].Make} `
+                    : "-"}
+                  {boatListing.Engines[0].Model
+                    ? boatListing.Engines[0].Model
+                    : "-"}
+                </div>
+              </div>
+            </div>
+
+            <div className="spec-wrapper">
+              <GiBoatPropeller className="spec-icon" />
+              <div>
+                <div className="bold">TOTAL POWER</div>
+                <div>
+                  {boatListing.Engines[0].EnginePower
+                    ? boatListing.Engines[0].EnginePower.replace(
+                        "horsepower",
+                        "hp"
+                      ).replace("|", " ")
+                    : "-"}
+                </div>
+              </div>
+            </div>
+            <div className="spec-wrapper">
+              <BsClockHistory className="spec-icon" />
+              <div>
+                <div className="bold">HOURS</div>
+                <div>
+                  {boatListing.Engines[0].Hours
+                    ? boatListing.Engines[0].Hours
+                    : "-"}
+                </div>
+              </div>
+            </div>
+
+            <div className="spec-wrapper">
+              <CiViewList className="spec-icon" />
+              <div>
+                <div className="bold">CLASS</div>
+                <div>
+                  {boatListing.BoatCategoryCode
+                    ? `${boatListing.BoatCategoryCode} `
+                    : "-"}
+                  {boatListing.BoatClassCode[0]
+                    ? `${boatListing.BoatClassCode[0]} `
+                    : "-"}
+                </div>
+              </div>
+            </div>
+
+            <div className="spec-wrapper">
+              <CiRuler className="spec-icon" />
+              <div>
+                <div className="bold">LENGTH</div>
+                <div>
+                  {boatListing.NominalLength ? boatListing.NominalLength : "-"}
+                </div>
+              </div>
+            </div>
+
+            <div className="spec-wrapper">
+              <PiBoat className="spec-icon" />
+              <div>
+                <div className="bold">BEAM</div>
+                <div>
+                  {boatListing.BeamMeasure ? boatListing.BeamMeasure : "-"}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -265,9 +380,7 @@ const ListingDetails = () => {
             <div className="boat-description">
               {boatDescription && <p>{parse(boatDescription)}</p>}
 
-              {additionalDescription && (
-                <p>{parse(additionalDescription)}</p>
-              )}
+              {additionalDescription && <p>{parse(additionalDescription)}</p>}
             </div>
 
             {/* <div className="listingDetails-button-container">

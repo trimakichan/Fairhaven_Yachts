@@ -21,8 +21,8 @@ const Listings = () => {
      data: boatListings,
    } = useBoatListings();
 
-   console.log(boatListings)
-  console.log("From listings", "isLoading", isLoading, "isFetching", isFetching);
+  //  console.log(boatListings)
+  // console.log("From listings", "isLoading", isLoading, "isFetching", isFetching);
 
 
   return (
@@ -44,7 +44,7 @@ const Listings = () => {
           <div className="sale-listings">
             {boatListings &&
               boatListings.map((item, index) => (
-                <Card key={index} data={{ item, index }} />
+                <Card key={index}  item={item}/>
               ))}
           </div>
 
