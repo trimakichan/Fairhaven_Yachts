@@ -11,9 +11,11 @@ const Layout = () => {
   const { openNav, setOpenNav, isMobileSliderOn, isImageSliderOn } =
     useContext(Contexts);
 
+    const toggleNav = () => setOpenNav()
+
   return (
     <>
-      <div className="layout" onClick={() => openNav && setOpenNav(!openNav)}>
+      <div className="layout" onClick={openNav ? toggleNav : undefined}>
         <header>
           <Navbar />
         </header>
@@ -27,6 +29,9 @@ const Layout = () => {
     </>
   );
 };
+
+export default Layout;
+
 
 // const ProtectedRoute = () => {
 //     const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -51,4 +56,4 @@ const Layout = () => {
 
 // }
 
-export default Layout;
+

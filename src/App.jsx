@@ -1,6 +1,6 @@
 import './assets/sass/main.scss';
 import { createBrowserRouter, RouterProvider, useLocation } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import  Layout  from './screens/Layout';
 import HomePage from './screens/HomePage';
@@ -10,6 +10,7 @@ import About from './screens/About'
 import Contact from './screens/Contact'
 import ListingDetails from './screens/ListingDetails';
 
+//When the router changes, the screen scrolls up to the top. 
 const LayoutWithScrollToTop = ({ children }) => {
   const { pathname } = useLocation();
 
@@ -19,7 +20,6 @@ const LayoutWithScrollToTop = ({ children }) => {
 
   return <Layout>{children}</Layout>;
 };
-
 
 function App() {
 
@@ -49,7 +49,7 @@ function App() {
       {
         path: '/:id',
         element: <ListingDetails />
-      },
+      }
     ]
   },
     // {
@@ -67,6 +67,7 @@ function App() {
   return (
     <RouterProvider router={router} />
   )
+
 }
 
 export default App

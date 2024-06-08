@@ -28,11 +28,12 @@ import { CiViewList } from "react-icons/ci";
 import { useBoatListingsById } from "../api/fetchListings";
 import ImageSlider from "../components/ImageSlider/ImageSlider";
 import MobileImageList from "../components/MobileImageList/MobileImageList";
+import Loading from "../components/Loading/Loading";
 
 const ListingDetails = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
   const { id } = useParams();
-  const { data: boatListing } = useBoatListingsById(id);
+  const { isLoading, isError, error, data: boatListing } = useBoatListingsById(id);
   const { isMobileSliderOn, setIsMobileSliderOn } = useContext(Contexts);
   const { isImageSliderOn, setIsImageSliderOn } = useContext(Contexts);
   const [mainImage, setMainImage] = useState(null);
@@ -134,7 +135,9 @@ const ListingDetails = () => {
     }
   };
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     boatListing && (
       <main className="listingDetails">
         {/* Title Section */}
@@ -162,7 +165,7 @@ const ListingDetails = () => {
           </motion.div>
         </div>
         {/* -------------------------------------------------------------------------------------- */}
-
+        (
         <div className="listingDetails__images">
           {/* Desktop Image Section */}
           {isImageSliderOn && (
@@ -364,9 +367,8 @@ const ListingDetails = () => {
             </div>
           </div>
         </div>
-
+        )
         {/* -------------------------------------------------------------------------------------- */}
-
         <div className="wrapper">
           <motion.div
             className="listingDetails__description"

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import AnchorIcon from "../components/AnchorIcon/AnchorIcon";
 import Card from "../components/Card/Card";
 import Reviews from "../components/Reviews/Reviews";
+
 // eslint-disable-next-line no-unused-vars
 import { listingData } from "../data/dammyData";
 import { Link } from "react-router-dom";
@@ -11,6 +12,8 @@ import { useBoatListings } from "../api/fetchListings";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { getCutoffDate } from "../utilities/utilities";
+import Loading from "../components/Loading/Loading";
+
 
 const HomePage = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
@@ -92,6 +95,7 @@ const HomePage = () => {
           </div>
 
           <div className="listings-container">
+            {/* <Loading /> */}
             {isLoading && <div>Loading....</div>}
             {newListings &&
               newListings.map((listing, index) => {
