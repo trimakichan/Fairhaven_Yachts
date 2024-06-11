@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import './card.scss';
 import { Link } from "react-router-dom";
 import { getCutoffDate } from '../../utilities/utilities';
@@ -32,6 +33,7 @@ const Card = ({ item }) => {
             {item.BoatLocation.BoatCityName}, {item.BoatLocation.BoatStateCode}
           </div>
 
+         
           <Link to={`/${item.DocumentID}`}>
             <p>
               <span className="linkText hoverEffectColor">

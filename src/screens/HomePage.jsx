@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { getCutoffDate } from "../utilities/utilities";
 import Loading from "../components/Loading/Loading";
 
-
 const HomePage = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
   const [newListings, setNewListings] = useState(null);
@@ -28,9 +27,13 @@ const HomePage = () => {
     data: listings,
   } = useBoatListings();
 
+
+
   useEffect(() => {
     // Retrieve listings that were created less than three months ago and have an active sales status.
     if (listings) {
+        // console.log(listings[0].Thumbnails);
+      console.log(listings)
       const cutoffDate = getCutoffDate();
       const newListings = listings.filter((item) => {
         const itemDate = new Date(item.ItemReceivedDate);
@@ -63,6 +66,7 @@ const HomePage = () => {
       </section>
 
       <div className="wrapper">
+
         <article className="homePage__intro">
           <motion.h1 className="homePage-intro-title" {...fadeInAnimSettings}>
             {" "}
