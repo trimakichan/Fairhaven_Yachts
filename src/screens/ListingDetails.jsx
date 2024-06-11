@@ -14,7 +14,6 @@ import SalesRepPopUp from "../components/SalesRepPopUp/SalesRepPopUp";
 const ListingDetails = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
   const { id } = useParams();
-  console.log(id)
   const {
     isLoading,
     isError,
@@ -78,11 +77,11 @@ const ListingDetails = () => {
           </div>
         </motion.div>
       </div>
-      <SalesRepPopUp />
+      <SalesRepPopUp salesRep={boatListing.SalesRep} />
 
       {/* Image Section */}
       <ImageDetailSection boatListing={boatListing} />
-    
+
       <div className="wrapper">
         <motion.div
           className="listingDetails__description"

@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import { useFadeInAnimSettings } from "../animations/animationHooks";
 import { Link } from "react-router-dom";
 import TeamMember from "../components/TeamMember/TeamMember";
-import { teamData } from "../data/teamData";
+import { brokersInfo } from "../data/brokersInfo";
 
 
 const About = () => {
@@ -33,7 +33,7 @@ const About = () => {
           </motion.div>
 
           <div className="team-members">
-            {teamData.map((memeber, index) => <TeamMember key={index} memberInfo={memeber} />)}
+            {brokersInfo.map((memeber, index) => <TeamMember key={index} memberInfo={memeber} />)}
 
           </div>
         </article>

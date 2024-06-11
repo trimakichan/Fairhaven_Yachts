@@ -17,7 +17,7 @@ import Loading from "../components/Loading/Loading";
 const HomePage = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
   const [newListings, setNewListings] = useState(null);
-  console.log(newListings);
+  // console.log(newListings);
 
   const {
     isLoading,
@@ -27,13 +27,10 @@ const HomePage = () => {
     data: listings,
   } = useBoatListings();
 
-
-
   useEffect(() => {
     // Retrieve listings that were created less than three months ago and have an active sales status.
     if (listings) {
-        // console.log(listings[0].Thumbnails);
-      console.log(listings)
+      // console.log(listings)
       const cutoffDate = getCutoffDate();
       const newListings = listings.filter((item) => {
         const itemDate = new Date(item.ItemReceivedDate);
@@ -48,7 +45,7 @@ const HomePage = () => {
 
   return (
     <main className="homePage">
-      <section className="homePage__hero">
+      <header className="homePage__hero">
         <div className="hero-content">
           <motion.p className="heroHeadingText" {...fadeInAnimSettings}>
             <span className="spanText">WELCOME TO</span> <br />
@@ -59,15 +56,16 @@ const HomePage = () => {
             extensive collection and make your dreams a reality.
           </p>
           <div className="buttons">
-            <button>Explore</button>
-            <button>Learn More</button>
+            <button aria-label="Explore our yacht collection">Explore</button>
+            <button aria-label="Learn more about Fairhaven Yachts">
+              Learn More
+            </button>
           </div>
         </div>
-      </section>
+      </header>
 
       <div className="wrapper">
-
-        <article className="homePage__intro">
+        <section className="homePage__intro">
           <motion.h1 className="homePage-intro-title" {...fadeInAnimSettings}>
             {" "}
             <span>Experienced</span> Yacht Brokerage
@@ -82,7 +80,7 @@ const HomePage = () => {
             and deep understanding of the industry, we are dedicated to
             delivering unparalleled results and exceeding your expectations.
           </motion.div>
-        </article>
+        </section>
       </div>
 
       <article className="homePage__listings">
@@ -90,7 +88,7 @@ const HomePage = () => {
           <div className="listing-title-container">
             <motion.div className="listing-title" {...fadeInAnimSettings}>
               <p>Yachts</p>
-              <h2>New Listings</h2>
+              <h2 className="bg-text">New Listings</h2>
               <div className="subtitle">
                 Explore our new and featured yacht listings.
               </div>
@@ -109,15 +107,15 @@ const HomePage = () => {
 
           <div className="buttonContainer">
             <Link to="buy">
-              <button>View all</button>
+              <button aria-label="View all the listings">View all</button>
             </Link>
           </div>
         </div>
       </article>
 
       <div className="wrapper">
-        <article className="homePage__section1 sectionLayout">
-          <motion.div
+        <section className="homePage__section1 sectionLayout">
+          <motion.article
             className="sectionContentLayout section1-content"
             {...fadeInAnimSettings}
           >
@@ -135,15 +133,21 @@ const HomePage = () => {
               <li className="textMJost">Personalized Service</li>
             </ul>
             <Link to="about" className="section1-button">
-              <button>Learn More</button>
+              <button aria-label="Learn more about Fairhaven Yachts">
+                Learn More
+              </button>
             </Link>
-          </motion.div>
+          </motion.article>
 
-          <img src="/home2.jpg" alt="a sailing image" className="imageCover" />
-        </article>
+          <img
+            src="/home2.jpg"
+            alt="A power boat blasting on the water"
+            className="imageCover"
+          />
+        </section>
       </div>
 
-      <article className="homePage__section2">
+      <section className="homePage__section2">
         <div className="wrapper sectionLayout">
           <img
             src="/home3.jpg"
@@ -179,9 +183,9 @@ const HomePage = () => {
             </div>
           </motion.div>
         </div>
-      </article>
+      </section>
 
-      <article className="homePage__callAction">
+      <section className="homePage__callAction">
         <div className="callAction-content">
           <h2>Discover Your Dream Yacht Today</h2>
           <p>
@@ -189,15 +193,15 @@ const HomePage = () => {
             adventure.
           </p>
           <Link to="buy">
-            <button>View Listings</button>
+            <button aria-label="View listings">View Listings</button>
           </Link>
         </div>
-      </article>
+      </section>
 
       <div className="wrapper">
-        <article className="homePage__reviews">
+        <section className="homePage__reviews">
           <Reviews />
-        </article>
+        </section>
       </div>
 
       <aside className="homePage__banners">

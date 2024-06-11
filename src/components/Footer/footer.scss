@@ -71,11 +71,17 @@
 
 
 
-            .laConnerContainer,
-            .kirklandContainer {
+            .laConner-office,
+            .kirkland-office {
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
+
+                a {
+                    &:hover {
+                        color: $color-accent-blue;
+                    }
+                }
 
                 @include lg {
                     align-items: center;

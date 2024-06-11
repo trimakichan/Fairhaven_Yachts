@@ -225,10 +225,10 @@ const ImageDetailSection = ({ boatListing }) => {
           <div>
             <div className="bold">ENGINE</div>
             <div>
-              {boatListing.Engines[0].Make
+              {boatListing.Engines && boatListing.Engines[0].Make
                 ? `${boatListing.Engines[0].Make} `
                 : "-"}
-              {boatListing.Engines[0].Model
+              {boatListing.Engines && boatListing.Engines[0]?.Model
                 ? boatListing.Engines[0].Model
                 : "-"}
             </div>
@@ -240,7 +240,7 @@ const ImageDetailSection = ({ boatListing }) => {
           <div>
             <div className="bold">TOTAL POWER</div>
             <div>
-              {boatListing.Engines[0].EnginePower
+              {boatListing.Engines && boatListing.Engines[0].EnginePower
                 ? boatListing.Engines[0].EnginePower.replace(
                     "horsepower",
                     "hp"
@@ -254,7 +254,7 @@ const ImageDetailSection = ({ boatListing }) => {
           <div>
             <div className="bold">HOURS</div>
             <div>
-              {boatListing.Engines[0].Hours
+              {boatListing.Engines && boatListing.Engines[0].Hours
                 ? boatListing.Engines[0].Hours
                 : "-"}
             </div>
@@ -269,7 +269,7 @@ const ImageDetailSection = ({ boatListing }) => {
               {boatListing.BoatCategoryCode
                 ? `${boatListing.BoatCategoryCode} `
                 : "-"}
-              {boatListing.BoatClassCode[0]
+              {boatListing.BoatClassCode && boatListing.BoatClassCode[0]
                 ? `${boatListing.BoatClassCode[0]} `
                 : "-"}
             </div>

@@ -14,9 +14,9 @@
 }
 
 @mixin mdMinWidth {
-        @media (min-width: 769px){
-                @content;
-            }
+    @media (min-width: 769px) {
+        @content;
+    }
 }
 
 @mixin lg {
@@ -69,7 +69,7 @@
 
 //For hero section (about and contact page)
 @mixin heroSectionStyle($imageLink, $position) {
-    
+
     width: 100%;
     height: 600px;
     padding: 5rem;
@@ -93,3 +93,35 @@
     }
 }
 
+@mixin bgWords($text, $font-size) {
+    position: relative;
+
+    &::before {
+        content: "Explore";
+        font-family: $text;
+        text-wrap: nowrap;
+        font-size: $font-size;
+        color: rgba($color-accent-gold, .1);
+        position: absolute;
+        top: -150%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+}
+
+// .bgWord {
+//     position: relative;
+
+//     &::before {
+//         content: "Explore";
+//         font-family: $font-family-hero;
+//         text-wrap: nowrap;
+//         font-size: 7rem;
+//         color: rgba($color-accent-gold, .1);
+//         position: absolute;
+//         top: -150%;
+//         left: 50%;
+//         transform: translateX(-50%);
+//     }
+// }

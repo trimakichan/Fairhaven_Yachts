@@ -9,6 +9,9 @@ $font-family-hero: "Playfair Display SC",
 $font-family-cursive: "Tangerine",
     cursive;
 
+$font-family-lora: "Lora",
+    serif;
+
 // General Text Styles
 
 .bold {
@@ -48,6 +51,26 @@ $font-family-cursive: "Tangerine",
 .linkText {
     font-family: $font-family-pretitle;
     font-size: 1rem;
+}
+
+.textLLora {
+    font-family: $font-family-lora;
+    font-size: clamp(1rem, 3vw + 1rem, 1.7rem);
+    font-style: italic;
+    font-weight: 300;
+}
+
+.textMLora {
+    font-family: $font-family-lora;
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.textSLora {
+    font-family: $font-family-lora;
+    font-size: 1rem;
+    font-weight: 300;
 }
 
 .textMJost {

@@ -18,7 +18,7 @@ const Footer = () => {
                     </div>
 
                     <div className="footer-location">
-                        <div className="laConnerContainer textSPlayfair ">
+                        <div className="laConner-office textSPlayfair ">
                             <div className='bold'>
                                 La Conner Office
                             </div>
@@ -31,7 +31,7 @@ const Footer = () => {
                         </div>
 
 
-                        <div className="kirklandContainer textSPlayfair">
+                        <div className="kirkland-office textSPlayfair">
                             <div className='bold'>
                                  Kirkland Office 
                             </div>
