@@ -33,6 +33,10 @@
             @include md {
                 margin-top: 80px;
             }
+
+            .listings-bg-text {
+                @include bgWords('DISCOVER', 8rem, -100%)
+            }
         }
 
         .sale-filter {
@@ -79,8 +83,6 @@
                 @include customButtonStyle($color-accent-gold, $color-text-secondary, $color-text-primary);
                 width: fit-content;
             }
-
-
 
         }
     }

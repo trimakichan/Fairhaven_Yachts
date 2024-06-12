@@ -7,7 +7,7 @@ import Reviews from "../components/Reviews/Reviews";
 // eslint-disable-next-line no-unused-vars
 import { listingData } from "../data/dammyData";
 import { Link } from "react-router-dom";
-import { useFadeInAnimSettings } from "../animations/animationHooks";
+import { useFadeInYAxisAnimSettings } from "../animations/animationHooks";
 import { useBoatListings } from "../api/fetchListings";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -15,7 +15,7 @@ import { getCutoffDate } from "../utilities/utilities";
 import Loading from "../components/Loading/Loading";
 
 const HomePage = () => {
-  const fadeInAnimSettings = useFadeInAnimSettings();
+  const fadeInAnimSettings = useFadeInYAxisAnimSettings();
   const [newListings, setNewListings] = useState(null);
   // console.log(newListings);
 
@@ -88,7 +88,7 @@ const HomePage = () => {
           <div className="listing-title-container">
             <motion.div className="listing-title" {...fadeInAnimSettings}>
               <p>Yachts</p>
-              <h2 className="bg-text">New Listings</h2>
+              <h2 className="home-bg-text">New Listings</h2>
               <div className="subtitle">
                 Explore our new and featured yacht listings.
               </div>

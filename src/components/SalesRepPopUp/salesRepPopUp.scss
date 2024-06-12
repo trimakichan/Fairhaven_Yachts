@@ -7,6 +7,7 @@
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
     outline: 1px solid grey;
+    background-color:$color-background-white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +21,7 @@
     &__title {
         border-top-right-radius: 1rem;
         border-top-left-radius: 1rem;
+        padding: .8rem;
         width: 100%;
         height: 10%;
         display: flex;
@@ -27,8 +29,6 @@
         align-items: center;
         background-color: $color-accent-sky;
         color: $color-text-secondary;
-
-
     }
 
     &__content {
@@ -79,7 +79,7 @@
 
                 button {
                     width: 100%;
-                    padding: 5px 0;
+                    padding: 8px 0;
                     display: flex;
                     align-items: center;
                     justify-content: center;

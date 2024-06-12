@@ -2,6 +2,59 @@
 
 .listingDetails {
 
+    .contact-aside {
+        position: fixed;
+        bottom: 5%;
+        right: 2%;
+        z-index: 999; 
+
+        @include md {
+            right: 5%;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: rgba($color-accent-sky, .7);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Center the circle exactly behind the icon */
+            z-index: -1;
+        }
+
+        &:hover,
+        &:focus {
+            cursor: pointer;
+        }
+
+        .salesRep-container {
+            position: fixed;
+            bottom: 12%;
+            right: 1%; 
+
+            @include md {
+                right: 0;
+            }
+           
+        }
+
+        .message-icon, .message-clsoe-icon {
+            color: $color-text-secondary;
+            position: relative;
+            width: 40px;
+            height: 40px;
+
+        }
+
+
+    }
+
+
+
     .listingDetails-title-bg {
         margin-top: 80px;
         background: url('/compass.svg') no-repeat;

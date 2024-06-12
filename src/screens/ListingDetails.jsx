@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import parse from "html-react-parser";
-import { useFadeInAnimSettings } from "../animations/animationHooks";
+import {
+  useFadeInYAxisAnimSettings,
+  useFadeInAnimSettings,
+} from "../animations/animationHooks";
 import { useParams } from "react-router-dom";
 import { useBoatListingsById } from "../api/fetchListings";
 import Loading from "../components/Loading/Loading";
@@ -9,10 +12,17 @@ import ImageDetailSection from "../components/ImageDetailSection/ImageDetailSect
 
 //icons
 import { GrLocation } from "react-icons/gr";
+import { AiOutlineMessage, AiOutlineCloseCircle } from "react-icons/ai";
+
 import SalesRepPopUp from "../components/SalesRepPopUp/SalesRepPopUp";
+import { useState } from "react";
 
 const ListingDetails = () => {
+  const fadeInYAxisAnimSettings = useFadeInYAxisAnimSettings();
   const fadeInAnimSettings = useFadeInAnimSettings();
+
+  const [isContactPopupOn, setIsContactPopupOn] = useState(false);
+  console.log(isContactPopupOn);
   const { id } = useParams();
   const {
     isLoading,
@@ -47,15 +57,42 @@ const ListingDetails = () => {
     );
   }
 
-
   if (isLoading) return <Loading />;
   if (isError) return <div>Error: {error}</div>;
 
   return (
     <main className="listingDetails">
+      <div className="contact-aside">
+        {isContactPopupOn ? (
+          <>
+            <div className="salesRep-container">
+              <SalesRepPopUp salesRep={boatListing.SalesRep} />
+            </div>
+            <motion.div {...fadeInAnimSettings}>
+              <AiOutlineCloseCircle
+                className="message-clsoe-icon"
+                aria-label="Close Contact Popup"
+                onClick={() => setIsContactPopupOn(!isContactPopupOn)}
+              />
+            </motion.div>
+          </>
+        ) : (
+          <motion.div {...fadeInAnimSettings}>
+            <AiOutlineMessage
+              className="message-icon"
+              aria-label="Contact Sales"
+              onClick={() => setIsContactPopupOn(!isContactPopupOn)}
+            />
+          </motion.div>
+        )}
+      </div>
+
       {/* Title Section */}
       <div className="wrapper listingDetails-title-bg">
-        <motion.div className="listingDetails__title" {...fadeInAnimSettings}>
+        <motion.div
+          className="listingDetails__title"
+          {...fadeInYAxisAnimSettings}
+        >
           <h1>
             <span>
               {`${boatListing.ModelYear} ${boatListing.MakeString} ${boatListing.Model}`}
@@ -77,7 +114,6 @@ const ListingDetails = () => {
           </div>
         </motion.div>
       </div>
-      <SalesRepPopUp salesRep={boatListing.SalesRep} />
 
       {/* Image Section */}
       <ImageDetailSection boatListing={boatListing} />

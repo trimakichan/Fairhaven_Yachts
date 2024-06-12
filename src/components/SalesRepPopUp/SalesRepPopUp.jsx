@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { FiPhone } from "react-icons/fi";
 import { TfiEmail } from "react-icons/tfi";
+import { BsChatText } from "react-icons/bs";
 
 const SalesRepPopUp = ({ salesRep }) => {
   console.log(salesRep);
@@ -29,7 +30,6 @@ const SalesRepPopUp = ({ salesRep }) => {
           <div className="textLLora">How Can I Help?</div>
         </header>
         <section className="popUp__content">
-          {/* {salesRep.PartyId && salesRep.PartyId === brokersInfo.salesRepId} */}
           <figure className="broker-top">
             <div className="broker-image">
               <img
@@ -54,20 +54,21 @@ const SalesRepPopUp = ({ salesRep }) => {
 
             <div className="contact-buttons">
               <a href={`tel:${broker.cell}`}>
-                <button
-                  className="call-button bold"
-                  aria-label="Call the broker"
-                >
-                  <FiPhone /> Call
+                <button aria-label="Call the broker">
+                  <FiPhone />
+                  <div className="textSLora bold">Call</div>
+                </button>
+              </a>
+              <a href={`tel:${broker.cell}`}>
+                <button aria-label="Text the broker">
+                  <BsChatText />
+                  <div className="textSLora bold">Text</div>
                 </button>
               </a>
               <a href={`mailto: ${broker.email}`}>
-                <button
-                  className="email-button bold"
-                  aria-label="Email the broker"
-                >
+                <button aria-label="Email the broker">
                   <TfiEmail />
-                  Email
+                  <div className="textSLora bold">Email</div>
                 </button>
               </a>
             </div>

@@ -1,5 +1,14 @@
 
 export const fadeInVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+};
+
+export const fadeInYAxisVariants = {
     initial: {
         opacity: 0,
         y: 50

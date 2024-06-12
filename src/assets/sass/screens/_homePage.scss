@@ -112,8 +112,8 @@
                 gap: 1rem;
 
              
-                .bg-text {
-                   @include bgWords('Expore', 8rem)
+                .home-bg-text {
+                   @include bgWords('EXPLORE', 8rem, -130%)
                 }
 
                 p {

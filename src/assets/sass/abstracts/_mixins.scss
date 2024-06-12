@@ -93,17 +93,17 @@
     }
 }
 
-@mixin bgWords($text, $font-size) {
+@mixin bgWords($text, $font-size, $top-position) {
     position: relative;
 
     &::before {
-        content: "Explore";
+        content: $text;
         font-family: $text;
         text-wrap: nowrap;
         font-size: $font-size;
-        color: rgba($color-accent-gold, .1);
+        color: rgba($color-accent-gold, .15);
         position: absolute;
-        top: -150%;
+        top: $top-position;
         left: 50%;
         transform: translateX(-50%);
     }
