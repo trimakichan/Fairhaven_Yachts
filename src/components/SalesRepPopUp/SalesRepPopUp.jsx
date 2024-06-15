@@ -1,12 +1,13 @@
 import "./salesRepPopUp.scss";
 import { brokersInfo } from "../../data/brokersInfo";
 import { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 import { FiPhone } from "react-icons/fi";
 import { TfiEmail } from "react-icons/tfi";
 import { BsChatText } from "react-icons/bs";
 
-const SalesRepPopUp = ({ salesRep }) => {
+const SalesRepPopUp = ({ salesRep, boatInfo }) => {
   console.log(salesRep);
   const [broker, setBroker] = useState(null);
   console.log(broker);
@@ -22,6 +23,22 @@ const SalesRepPopUp = ({ salesRep }) => {
       setBroker(matchingBroker || brokersInfo[0]); // Fallback to the owner if no match is found
     }
   }, [salesRep]);
+
+  const sendText = () => {
+    if (isMobile) {
+      sendSMS(
+        broker.cell,
+        `Hi! I am interested in the ${boatInfo.make} ${boatInfo.model}.`
+      );
+    } else {
+      alert("This funciton is only available on mobile devices.");
+    }
+  };
+
+  const sendSMS = (phoneNumber, message) => {
+    const url = `sms:${phoneNumber}?body=${encodeURIComponent(message)}`;
+    window.open(url);
+  };
 
   return (
     broker && (
@@ -59,12 +76,13 @@ const SalesRepPopUp = ({ salesRep }) => {
                   <div className="textSLora bold">Call</div>
                 </button>
               </a>
-              <a href={`tel:${broker.cell}`}>
-                <button aria-label="Text the broker">
+              {/* Text button will show if the device is mobile */}
+              {isMobile && (
+                <button aria-label="Text the broker" onClick={sendText}>
                   <BsChatText />
                   <div className="textSLora bold">Text</div>
                 </button>
-              </a>
+              )}
               <a href={`mailto: ${broker.email}`}>
                 <button aria-label="Email the broker">
                   <TfiEmail />

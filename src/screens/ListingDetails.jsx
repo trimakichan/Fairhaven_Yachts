@@ -16,6 +16,7 @@ import { AiOutlineMessage, AiOutlineCloseCircle } from "react-icons/ai";
 
 import SalesRepPopUp from "../components/SalesRepPopUp/SalesRepPopUp";
 import { useState } from "react";
+import Pagination from "../components/Pagination/pagination";
 
 const ListingDetails = () => {
   const fadeInYAxisAnimSettings = useFadeInYAxisAnimSettings();
@@ -62,11 +63,20 @@ const ListingDetails = () => {
 
   return (
     <main className="listingDetails">
+      {/* <div className="wrapper">
+        <Pagination />
+      </div> */}
       <div className="contact-aside">
         {isContactPopupOn ? (
           <>
             <div className="salesRep-container">
-              <SalesRepPopUp salesRep={boatListing.SalesRep} />
+              <SalesRepPopUp
+                salesRep={boatListing.SalesRep}
+                boatInfo={{
+                  make: boatListing.MakeString,
+                  model: boatListing.Model,
+                }}
+              />
             </div>
             <motion.div {...fadeInAnimSettings}>
               <AiOutlineCloseCircle
@@ -95,7 +105,9 @@ const ListingDetails = () => {
         >
           <h1>
             <span>
-              {`${boatListing.ModelYear} ${boatListing.MakeString} ${boatListing.Model}`}
+              {`${boatListing.ModelYear} ${
+                boatListing.BuilderName || boatListing.MakeString
+              } ${boatListing.Model}`}
             </span>
           </h1>
 

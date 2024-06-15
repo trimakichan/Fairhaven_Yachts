@@ -25,7 +25,7 @@ const Card = ({ item }) => {
         </Link>
 
         <div className="card__context">
-          <p className="listingTitle">{item.MakeString}</p>
+          <p className="listingTitle">{item.BuilderName ||item.MakeString}</p>
           {/* write a function to compared the two prices if it is the same or not */}
           {/* {item.OriginalPrice !== item.Price ? <p>{item.OriginalPrice}</p> : null}  */}
           <p>$ {item.Price}</p>

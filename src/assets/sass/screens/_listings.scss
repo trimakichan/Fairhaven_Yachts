@@ -31,18 +31,17 @@
             gap: 1rem; 
             
             @include md {
-                margin-top: 80px;
+                margin-top: 120px;
             }
 
             .listings-bg-text {
-                @include bgWords('DISCOVER', 8rem, -100%)
+                @include bgWords('DISCOVER', 8rem, -65%)
             }
         }
 
         .sale-filter {
-            width: 70%;
-            height: 100px;
-            border: 1px solid black;
+            width: 100%;
+            
         }
 
         .sale-listings {

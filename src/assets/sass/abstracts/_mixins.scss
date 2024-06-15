@@ -100,7 +100,8 @@
         content: $text;
         font-family: $text;
         text-wrap: nowrap;
-        font-size: $font-size;
+        // font-size: $font-size;
+        font-size:clamp(calc($font-size / 3), 4vw + 1rem, $font-size);
         color: rgba($color-accent-gold, .15);
         position: absolute;
         top: $top-position;
@@ -109,19 +110,3 @@
     }
 
 }
-
-// .bgWord {
-//     position: relative;
-
-//     &::before {
-//         content: "Explore";
-//         font-family: $font-family-hero;
-//         text-wrap: nowrap;
-//         font-size: 7rem;
-//         color: rgba($color-accent-gold, .1);
-//         position: absolute;
-//         top: -150%;
-//         left: 50%;
-//         transform: translateX(-50%);
-//     }
-// }

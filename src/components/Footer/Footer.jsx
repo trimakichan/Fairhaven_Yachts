@@ -72,7 +72,7 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-bottom">
-                    <div className='textSPlayfair'>©2024 FAIRHAVEN YACHT SALES. All rights reserved.</div>
+                    <div className='textSPlayfair'>©{new Date().getFullYear()} FAIRHAVEN YACHT SALES. All rights reserved.</div>
                 </div>
             </div>
         </footer>

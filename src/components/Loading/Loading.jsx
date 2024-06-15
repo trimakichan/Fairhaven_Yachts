@@ -21,7 +21,7 @@ const Loading = () => {
           className="loading-icon"
           alt="spinner animation"
         />
-        <div className="textMRoboto">Loading....</div>
+        <div className="textMRoboto loading-text">Loading....</div>
       </div>
     </main>
   );

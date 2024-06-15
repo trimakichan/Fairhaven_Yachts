@@ -1,16 +1,22 @@
 /* eslint-disable no-unused-vars */
+import { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Contexts } from "../contexts/contexts";
 import { useFadeInYAxisAnimSettings } from "../animations/animationHooks";
 import AnchorIcon from "../components/AnchorIcon/AnchorIcon";
 import Card from "../components/Card/Card";
-import { useState } from "react";
 import { BiFontColor } from "react-icons/bi";
 import { useBoatListings } from "../api/fetchListings";
 import Loading from "../components/Loading/Loading";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 const Listings = () => {
+  const { filteredResults } = useContext(Contexts);
   const fadeInAnimSettings = useFadeInYAxisAnimSettings();
+  const [buildersType, setBuildersType] = useState(null);
+
+  // console.log(buildersType)
   const {
     isLoading,
     isError,
@@ -18,11 +24,21 @@ const Listings = () => {
     isFetching,
     data: boatListings,
   } = useBoatListings();
+  // console.log(boatListings);
 
-  //  console.log(boatListings)
-  // console.log("From listings", "isLoading", isLoading, "isFetching", isFetching);
+  useEffect(() => {
+    if (boatListings) {
+      const builders = [
+        ...new Set(
+          boatListings.map((obj) => obj.BuilderName || obj.MakeString)
+        ),
+      ];
+      setBuildersType(builders);
+    }
+  }, [boatListings]);
 
-  return (
+  //Add a condition? boatlistings &&
+  return boatListings ? (
     <main className="listings">
       <header className="listings__hero"></header>
 
@@ -37,16 +53,39 @@ const Listings = () => {
           </header>
 
           <div className="sale-filter">
-            <p>Filter section will be added here later...</p>
+            {boatListings && (
+              <SearchBar builders={buildersType} allBoats={boatListings} />
+            )}
           </div>
 
           {isLoading && <Loading />}
+
+          {/* {boatListings && filteredResults && (
+            <>
+              <div className="sale-listings">
+                {filteredResults.map((item, index) => (
+                  <Card key={index} item={item} />
+                ))}
+              </div>
+              <button>Load More</button>
+            </>
+          )} */}
+
           {boatListings && (
             <>
               <div className="sale-listings">
-                {boatListings.map((item, index) => (
-                  <Card key={index} item={item} />
-                ))}
+                {/* Display boatListings only if filteredResults is empty or undefined */}
+                {(!filteredResults || filteredResults.length === 0) &&
+                  boatListings.map((item, index) => (
+                    <Card key={index} item={item} />
+                  ))}
+
+                {/* Always display filteredResults if they exist and contain elements */}
+                {filteredResults &&
+                  filteredResults.length > 0 &&
+                  filteredResults.map((boat, index) => (
+                    <Card key={index} item={boat} />
+                  ))}
               </div>
               <button>Load More</button>
             </>
@@ -76,6 +115,8 @@ const Listings = () => {
         </div>
       </article>
     </main>
+  ) : (
+    <Loading />
   );
 };
 

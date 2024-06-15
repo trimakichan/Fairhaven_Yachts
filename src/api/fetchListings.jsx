@@ -10,7 +10,7 @@ const fetchApi = async (url) => {
   }
 
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   return data.results;
 };
 
@@ -140,7 +140,6 @@ const filterData = async (results) => {
 const fetchBoatListings = async () => {
   const url = `/api/inventory/search?key=${apiKey}&status=active,sale%20pending`;
   const results = await fetchApi(url);
-
   return filterData(results);
 };
 
