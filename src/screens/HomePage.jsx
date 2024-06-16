@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import AnchorIcon from "../components/AnchorIcon/AnchorIcon";
 import Card from "../components/Card/Card";
-import Reviews from "../components/Reviews/Reviews";
 
 // eslint-disable-next-line no-unused-vars
 import { listingData } from "../data/dammyData";
@@ -13,6 +12,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { getCutoffDate } from "../utilities/utilities";
 import Loading from "../components/Loading/Loading";
+import CustomerReviews from "../components/CustomerReviews/CustomerReviews";
 
 
 const MAX_ITEMS_PER_LOAD = 3;
@@ -24,7 +24,6 @@ const HomePage = () => {
   const [newListingsInitial, setNewListingsInitial] = useState(null);
 
  
-
   const {
     isLoading,
     isError,
@@ -214,7 +213,7 @@ const HomePage = () => {
 
       <div className="wrapper">
         <section className="homePage__reviews">
-          <Reviews />
+         <CustomerReviews />
         </section>
       </div>
 
