@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useFadeInYAxisAnimSettings } from "../animations/animationHooks";
-import Form from "../components/Form/Form";
+import Form from '../components/Form/Form'
 import AnchorIcon from "../components/AnchorIcon/AnchorIcon";
 
 const SellYachts = () => {
