@@ -79,16 +79,16 @@ useEffect(() => {
   const resetFilter = () => {
      setFilteredResults(allBoats);
 
-    // setSearchParams({
-    //   builder: "",
-    //   class: "",
-    //   minYear: "",
-    //   maxYear: new Date().getFullYear(),
-    //   minPrice: "",
-    //   maxPrice: '50000000',
-    //   minLength: "",
-    //   maxLength: 300,
-    // });
+    setSearchParams({
+      builder: "",
+      class: "",
+      minYear: "",
+      maxYear: new Date().getFullYear(),
+      minPrice: "",
+      maxPrice: '50000000',
+      minLength: "",
+      maxLength: 300,
+    });
    
   };
 
@@ -179,7 +179,7 @@ useEffect(() => {
               min={0}
               max={50000000}
               placeholder="Max"
-              // value={searchParams.maxPrice}
+              value={searchParams.maxPrice}
               onChange={handleInputChange}
             />
           </div>

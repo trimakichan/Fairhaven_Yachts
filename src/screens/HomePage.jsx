@@ -14,10 +14,16 @@ import { useEffect, useState } from "react";
 import { getCutoffDate } from "../utilities/utilities";
 import Loading from "../components/Loading/Loading";
 
+
+const MAX_ITEMS_PER_LOAD = 3;
+
 const HomePage = () => {
   const fadeInAnimSettings = useFadeInYAxisAnimSettings();
   const [newListings, setNewListings] = useState(null);
-  // console.log(newListings);
+  const [visibleCount, setVisibleCount] = useState(MAX_ITEMS_PER_LOAD);
+  const [newListingsInitial, setNewListingsInitial] = useState(null);
+
+ 
 
   const {
     isLoading,
@@ -27,21 +33,27 @@ const HomePage = () => {
     data: listings,
   } = useBoatListings();
 
-  useEffect(() => {
-    // Retrieve listings that were created less than three months ago and have an active sales status.
-    if (listings) {
-      // console.log(listings)
-      const cutoffDate = getCutoffDate();
-      const newListings = listings.filter((item) => {
-        const itemDate = new Date(item.ItemReceivedDate);
-        // console.log(itemDate)
-        return itemDate > cutoffDate && item.SalesStatus === "Active";
-      });
-      setNewListings(newListings);
-    }
-  }, [listings]);
+ useEffect(() => {
+   if (listings) {
+     const cutoffDate = getCutoffDate();
+     const filteredListings = listings.filter((item) => {
+       const itemDate = new Date(item.ItemReceivedDate);
+       return itemDate > cutoffDate && item.SalesStatus === "Active";
+     });
+     setNewListings(filteredListings);
 
-  console.log("From Home", "isLoading", isLoading, "isFetching", isFetching);
+     // Update the initial displayed listings
+     const initialLoad = filteredListings.slice(0, visibleCount);
+     setNewListingsInitial(initialLoad);
+   }
+ }, [listings, visibleCount]);
+
+ // Function to load more listings
+ const loadMore = () => {
+   setVisibleCount((prev) => (newListings.length)
+   );
+ };
+
 
   return (
     <main className="homePage">
@@ -100,15 +112,17 @@ const HomePage = () => {
             {/* <Loading /> */}
             {isLoading && <div>Loading....</div>}
             {newListings &&
-              newListings.map((listing, index) => {
+              newListingsInitial.map((listing, index) => {
                 return <Card key={index} item={listing} />;
               })}
           </div>
 
           <div className="buttonContainer">
-            <Link to="buy">
-              <button aria-label="View all the listings">View all</button>
-            </Link>
+            {/* <Link to="buy"> */}
+            <button aria-label="View all the new listings" onClick={loadMore}>
+              View all
+            </button>
+            {/* </Link> */}
           </div>
         </div>
       </article>

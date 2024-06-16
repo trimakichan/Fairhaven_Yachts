@@ -107,7 +107,7 @@ const filterData = async (results) => {
     })
   );
 
-  console.log(filteredData);
+  // console.log(filteredData);
   return filteredData;
 
   //convert from png files to webp files
