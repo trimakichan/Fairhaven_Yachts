@@ -6,11 +6,6 @@ export default defineConfig({
   plugins: [react()],
   // base: "/Fairhaven_Yachts/",
 
-  //remove later
-  // server: {
-  //   port: 5174  //remove when in production!!
-  // },
-
   //-------------------
 
   server: {
