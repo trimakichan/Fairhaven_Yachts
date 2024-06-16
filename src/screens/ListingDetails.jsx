@@ -23,7 +23,7 @@ const ListingDetails = () => {
   const fadeInAnimSettings = useFadeInAnimSettings();
 
   const [isContactPopupOn, setIsContactPopupOn] = useState(false);
-  console.log(isContactPopupOn);
+  // console.log(isContactPopupOn);
   const { id } = useParams();
   const {
     isLoading,
@@ -31,7 +31,7 @@ const ListingDetails = () => {
     error,
     data: boatListing,
   } = useBoatListingsById(id);
-  console.log(boatListing);
+  // console.log(boatListing);
 
   const setFixedFontSize = (text) => {
     if (!text) return;

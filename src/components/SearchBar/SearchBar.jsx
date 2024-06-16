@@ -1,30 +1,43 @@
 import { useContext, useEffect, useState } from "react";
 import "./searchBar.scss";
 import { CiSearch } from "react-icons/ci";
+import { IoCloseOutline } from "react-icons/io5";
+
 import { Contexts } from "../../contexts/contexts";
 
-const SearchBar = ({ builders, allBoats }) => {
-  const { setFilteredResults } = useContext(Contexts);
+const SearchBar = ({ allBoats }) => {
+  const { filteredResults, setFilteredResults } = useContext(Contexts);
+  const [buildersType, setBuildersType] = useState(null);
   const [searchParams, setSearchParams] = useState({
     builder: "",
     class: "",
-    minYear: 1920,
+    minYear: "",
     maxYear: new Date().getFullYear(),
-    minPrice: 0,
+    minPrice: "",
     maxPrice: 50000000,
-    minLength: 0,
+    minLength: "",
     maxLength: 300,
   });
 
   const handleInputChange = (e) => {
-    console.log(e.target.value);
     const { name, value } = e.target;
-    // console.log({ [name]: value });
     setSearchParams((prevParams) => ({
       ...prevParams,
       [name]: parseFloat(value) || value,
     }));
   };
+
+
+useEffect(() => {
+  if (allBoats && allBoats.length > 0) {
+    setFilteredResults(allBoats);
+    const builders = new Set(
+      allBoats.map((boat) => boat.BuilderName || boat.MakeString)
+    );
+    setBuildersType([...builders]);
+  }
+}, [allBoats, setFilteredResults, setBuildersType]);
+
 
   useEffect(() => {
     const {
@@ -37,53 +50,69 @@ const SearchBar = ({ builders, allBoats }) => {
       minLength,
       maxLength,
     } = searchParams;
+    // console.log(searchParams)
+
+    if (
+      [minYear, maxYear, minPrice, maxPrice, minLength, maxLength].some(
+        (value) => value < 0
+      )
+    )
+      alert("Values cannot be negative");
 
     const results = allBoats.filter(
       (boat) =>
-        (builder === "" || boat.BuilderName === builder) &&
+        (builder === "" ||
+          boat.BuilderName === builder ||
+          boat.MakeString === builder) &&
         (boatClass === "" || boat.BoatCategoryCode === boatClass) &&
-        boat.ModelYear >= parseFloat(minYear, 10) &&
-        boat.ModelYear <= parseFloat(maxYear, 10) &&
-        parseFloat(boat.Price) <= parseFloat(maxPrice) &&
-        parseFloat(boat.Price) >= parseFloat(minPrice) &&
-        parseFloat(boat.NominalLength) >= parseFloat(minLength) &&
-        parseFloat(boat.NominalLength) <= parseFloat(maxLength)
+        boat.ModelYear >= minYear &&
+        boat.ModelYear <= maxYear &&
+        parseFloat(boat.Price) <= maxPrice &&
+        parseFloat(boat.Price) >= minPrice &&
+        parseFloat(boat.NominalLength) >= minLength &&
+        parseFloat(boat.NominalLength) <= maxLength
     );
 
     setFilteredResults(results);
-  }, [searchParams, setFilteredResults, allBoats
-  ]);
+  }, [searchParams, setFilteredResults, allBoats]);
 
   const resetFilter = () => {
-    setSearchParams({
-      builder: "",
-      class: "",
-      minYear: 1920,
-      maxYear: new Date().getFullYear(),
-      minPrice: 0,
-      maxPrice: 50000000,
-      minLength: 0,
-      maxLength: 300,
-    });
-        setFilteredResults([]);
+     setFilteredResults(allBoats);
+
+    // setSearchParams({
+    //   builder: "",
+    //   class: "",
+    //   minYear: "",
+    //   maxYear: new Date().getFullYear(),
+    //   minPrice: "",
+    //   maxPrice: '50000000',
+    //   minLength: "",
+    //   maxLength: 300,
+    // });
+   
   };
 
   return (
     <div className="search-bar">
-      <div className="textLLora">
-        Filter your results{" "}
-        <span className="textSRoboto" onClick={resetFilter}>
-          {" "}
+      <div className="filter-title">
+        <div className="textLLora ">Filter your results </div>
+        <div className="textMRoboto reset" onClick={resetFilter}>
+          <IoCloseOutline />
           Reset Filter
-        </span>
+        </div>
       </div>
       <form action="submit" className="textMLora">
         <div className="filter-box ">
           <label htmlFor="builder">Builder</label>
-          <select name="builder" id="builder" onChange={handleInputChange}>
+          <select
+            name="builder"
+            id="builder"
+            value={searchParams.builder}
+            onChange={handleInputChange}
+          >
             <option value="">Any</option>
-            {builders &&
-              builders.map((item, index) => {
+            {buildersType &&
+              buildersType.map((item, index) => {
                 return (
                   <option value={item} key={index}>
                     {item}
@@ -95,7 +124,12 @@ const SearchBar = ({ builders, allBoats }) => {
 
         <div className="filter-box">
           <label htmlFor="class">Class</label>
-          <select name="class" id="class" onChange={handleInputChange}>
+          <select
+            name="class"
+            id="class"
+            value={searchParams.class}
+            onChange={handleInputChange}
+          >
             <option value="">Any</option>
             <option value="Power">Power Boats</option>
             <option value="Sail">Sail Boats</option>
@@ -112,6 +146,7 @@ const SearchBar = ({ builders, allBoats }) => {
               min={1920}
               max={new Date().getFullYear()}
               placeholder="Min"
+              value={searchParams.minYear}
               onChange={handleInputChange}
             />
             <input
@@ -120,6 +155,7 @@ const SearchBar = ({ builders, allBoats }) => {
               min={1920}
               max={new Date().getFullYear()}
               placeholder="Max"
+              value={searchParams.maxYear}
               onChange={handleInputChange}
             />
           </div>
@@ -134,6 +170,7 @@ const SearchBar = ({ builders, allBoats }) => {
               name="minPrice"
               min={0}
               placeholder="Min"
+              value={searchParams.minPrice}
               onChange={handleInputChange}
             />
             <input
@@ -142,6 +179,7 @@ const SearchBar = ({ builders, allBoats }) => {
               min={0}
               max={50000000}
               placeholder="Max"
+              // value={searchParams.maxPrice}
               onChange={handleInputChange}
             />
           </div>
@@ -157,6 +195,7 @@ const SearchBar = ({ builders, allBoats }) => {
               min={0}
               //   max={50000000}
               placeholder="Min"
+              value={searchParams.minLength}
               onChange={handleInputChange}
             />
             <input
@@ -165,16 +204,21 @@ const SearchBar = ({ builders, allBoats }) => {
               min={0}
               //   max={300}
               placeholder="Max"
+              value={searchParams.maxLength}
               onChange={handleInputChange}
             />
           </div>
         </div>
 
-        <button type="submit">
+        {/* <button type="submit">
           <CiSearch />
           Search
-        </button>
+        </button> */}
       </form>
+
+      <div className="textLLora">
+        <span className="results-count">{filteredResults.length}</span> results
+      </div>
     </div>
   );
 };

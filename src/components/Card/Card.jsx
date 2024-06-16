@@ -25,15 +25,22 @@ const Card = ({ item }) => {
         </Link>
 
         <div className="card__context">
-          <p className="listingTitle">{item.BuilderName ||item.MakeString}</p>
+          <p className="listingTitle">{item.BuilderName || item.MakeString}</p>
           {/* write a function to compared the two prices if it is the same or not */}
           {/* {item.OriginalPrice !== item.Price ? <p>{item.OriginalPrice}</p> : null}  */}
-          <p>$ {item.Price}</p>
+          <p>
+            {parseFloat(item.Price).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 0, 
+              maximumFractionDigits: 0,
+            })}
+          </p>
+
           <div className="textSJost">
             {item.BoatLocation.BoatCityName}, {item.BoatLocation.BoatStateCode}
           </div>
 
-         
           <Link to={`/${item.DocumentID}`}>
             <p>
               <span className="linkText hoverEffectColor">

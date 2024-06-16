@@ -4,8 +4,21 @@
 .search-bar {
     width: 100%;
 
+    .filter-title {
+        display: flex;
+        gap: 1rem;
+ 
+        .reset {
+            cursor: pointer;
+            align-self: end;
+            display: flex;
+            align-items: center;
+            color: red;
+        }
+    }
+
     form {
-        margin-top: 1rem;
+        margin: 1rem 0 3rem;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
@@ -54,6 +67,10 @@
         &:hover {
             background-color: rgba($color-accent-gold, .4);
         }
+    }
+
+    .results-count {
+        color: red;
     }
 
 }
