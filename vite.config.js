@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: "/Fairhaven_Yachts/",
 
   //remove later
   // server: {
@@ -13,8 +14,8 @@ export default defineConfig({
   //-------------------
 
   server: {
-    host: '0.0.0.0', // Bind to all network interfaces
-    port: 5174, 
+    // host: '0.0.0.0', // Bind to all network interfaces
+    // port: 5174, 
 
     //change here before production?
     proxy: {
