@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useFadeInYAxisAnimSettings } from "../animations/animationHooks";
-import Form from "../components/Form/Form";
 import AnchorIcon from "../components/AnchorIcon/AnchorIcon";
+import ContactForm from "../components/ContactForm/ContactForm";
+
 
 const SellYachts = () => {
   const fadeInAnimSettings = useFadeInYAxisAnimSettings();
@@ -69,7 +70,9 @@ const SellYachts = () => {
           </motion.div>
 
           <div className="sellYachts-form-container">
-            <Form />
+        <ContactForm />
+           
+            
           </div>
         </div>
       </article>

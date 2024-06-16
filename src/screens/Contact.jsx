@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
-import { useFadeInYAxisAnimSettings } from "../animations/animationHooks";
-import Form from "../components/Form/Form";
+import { useFadeInYAxisAnimSettings } from "../animations/animationHooks"
 import AnchorIcon from "../components/AnchorIcon/AnchorIcon";
-
 import { MdOutlineEmail } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
 import { GrLocation } from "react-icons/gr";
+import ContactForm from "../components/ContactForm/ContactForm";
 
 const Contact = () => {
   const fadeInAnimSettings = useFadeInYAxisAnimSettings();
@@ -101,7 +100,7 @@ const Contact = () => {
             <AnchorIcon />
           </motion.div>
           <div className="contact-form-container">
-            <Form />
+            <ContactForm />
           </div>
         </div>
       </div>
