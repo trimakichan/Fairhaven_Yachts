@@ -2,8 +2,10 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+// console.log(apiBaseUrl)
 
 const fetchApi = async (url) => {
+  // const response = await fetch(`${apiBaseUrl}${url}`);
   const response = await fetch(`${apiBaseUrl}${url}`);
 
   if (!response.ok) {
@@ -11,7 +13,7 @@ const fetchApi = async (url) => {
   }
 
   const data = await response.json();
-  // console.log(data);
+  console.log(data);
   return data.results;
 };
 
