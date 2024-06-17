@@ -5,17 +5,28 @@ const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 // console.log(apiBaseUrl)
 
 const fetchApi = async (url) => {
-  // const response = await fetch(`${apiBaseUrl}${url}`);
-     const response = await fetch(url);
-
+  const response = await fetch(`/api/proxy?url=${encodeURIComponent(url)}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch: ${response.statusText}`);
   }
-
   const data = await response.json();
   console.log(data);
   return data.results;
 };
+
+
+// const fetchApi = async (url) => {
+//   // const response = await fetch(`${apiBaseUrl}${url}`);
+//      const response = await fetch(url);
+
+//   if (!response.ok) {
+//     throw new Error(`Failed to fetch: ${response.statusText}`);
+//   }
+
+//   const data = await response.json();
+//   console.log(data);
+//   return data.results;
+// };
 
 //Function to resize images
 // const convertToWebp = async (src, maxWidth=300, maxHeight=200, quality = 0.9) => {
