@@ -5,6 +5,21 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
 
+    server: {
+      // host: '0.0.0.0', // Bind to all network interfaces
+      // port: 5174,
+
+      // change here before production?
+      proxy: {
+        // Proxying API requests
+        '/api': {
+          target: 'https://api.boats.com', // Target API
+          changeOrigin: true,  // Needed for virtual hosted sites
+          rewrite: (path) => path.replace(/^\/api/, ''),  // Rewrite path removing '/api'
+        }
+      }
+    },
+
   // Configuration options for the production build
   build: {
     minify: 'esbuild', // Using esbuild for faster builds; switch to 'terser' for more complex scenarios

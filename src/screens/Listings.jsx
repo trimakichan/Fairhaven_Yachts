@@ -23,7 +23,13 @@ const Listings = () => {
   // });
   const fadeInAnimSettings = useFadeInYAxisAnimSettings();
 
-  const { isLoading, isError, error, isFetching, data: boatListings } = useBoatListings();
+  const {
+    isLoading,
+    isError,
+    error,
+    isFetching,
+    data: boatListings,
+  } = useBoatListings();
 
   // const boatListings = data?.slice(0, visibleCount);
 

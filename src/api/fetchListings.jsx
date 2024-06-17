@@ -5,69 +5,16 @@ const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 // console.log(apiBaseUrl)
 
 const fetchApi = async (url) => {
-  console.log(`Fetching data from URL: ${url}`); //
-  const response = await fetch(`/api/proxy?url=${encodeURIComponent(url)}`);
+  const response = await fetch(url);
+
   if (!response.ok) {
     throw new Error(`Failed to fetch: ${response.statusText}`);
   }
+
   const data = await response.json();
-  console.log(`Received data: ${JSON.stringify(data)}`);
+  console.log(data);
   return data.results;
 };
-
-
-// const fetchApi = async (url) => {
-//   // const response = await fetch(`${apiBaseUrl}${url}`);
-//      const response = await fetch(url);
-
-//   if (!response.ok) {
-//     throw new Error(`Failed to fetch: ${response.statusText}`);
-//   }
-
-//   const data = await response.json();
-//   console.log(data);
-//   return data.results;
-// };
-
-//Function to resize images
-// const convertToWebp = async (src, maxWidth=300, maxHeight=200, quality = 0.9) => {
-//   console.log(src);
-//   return new Promise((resolve, reject) => {
-//     //new Image() is functionally equivalent to document.createElement('img').
-//     const img = new Image();
-//     img.crossOrigin = "anonymous";
-//     img.src = src;
-
-//     img.onload = () => {
-//       const canvas = document.createElement("canvas");
-//       // Calculate the new size maintaining aspect ratio
-//       let ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
-//       let newWidth = img.width * ratio;
-//       let newHeight = img.height * ratio;
-
-//       const ctx = canvas.getContext("2d");
-//       ctx.drawImage(img, 0, 0, newWidth, newHeight);
-
-//       canvas.toBlob(
-//         (blob) => {
-//           if (blob) {
-//             const webUrl = URL.createObjectURL(blob);
-//             resolve(webUrl);
-//           } else {
-//             reject(new Error("Conversion to WebP failed"));
-//           }
-//         },
-//         "image/webp",
-//         quality
-//       );
-//     };
-
-//     img.onerror = () => {
-//       reject(new Error("Failed to load image for conversion"));
-//     };
-//   });
-// };
-// ---------------------------------------------------------------
 
 const filterData = async (results) => {
   if (!results || !Array.isArray(results)) {
@@ -125,45 +72,18 @@ const filterData = async (results) => {
   console.log(`Filtered data: ${JSON.stringify(filteredData)}`); 
   return filteredData;
 
-  //convert from png files to webp files
-  //   const filteredResults = filteredData.map(async (result) => {
-  //     console.log(result.Images[0].Uri);
-  //     const uri = result.Images[0].Uri;
-
-  //     try {
-  //       //result.Images.map(convertToWebp) is as same as result.Images.map(src => convertToWebp(src))
-
-  //       const thumbnail = await convertToWebp(uri);
-  //       console.log(thumbnail);
-
-  //       return {
-  //         ...result,
-  //         Thumbnail: thumbnail,
-  //       };
-  //     } catch (err) {
-  //       console.error(err);
-  //       return { ...result };
-  //     }
-  //   });
-
-  //  const finalResults = await Promise.all(filteredResults);
-  //  console.log('results', finalResults);
-
-  //  return finalResults;
 };
 
 const fetchBoatListings = async () => {
-  // const url = `/inventory/search?key=${apiKey}&status=active,sale%20pending`;
-  // const url = `/inventory/search?key=${apiKey}&status=active,sale%20pending`;
-    const url = `https://api.boats.com/inventory/search?key=${apiKey}&status=active,sale%20pending`;
+  const url = `/api/inventory/search?key=${apiKey}&status=active,sale%20pending`;
+    // const url = `https://api.boats.com/inventory/search?key=${apiKey}&status=active,sale%20pending`;
   const results = await fetchApi(url);
   return filterData(results);
 };
 
 const fetchBoatListingById = async (id) => {
-  // const url = `/inventory/search?key=${apiKey}&DocumentID=${id}`;
-  // const url = `/inventory/search?key=${apiKey}&DocumentID=${id}`;
-  const url = `https://api.boats.com/inventory/search?key=${apiKey}&DocumentID=${id}`;
+  const url = `/api/inventory/search?key=${apiKey}&DocumentID=${id}`;
+  // const url = `https://api.boats.com/inventory/search?key=${apiKey}&DocumentID=${id}`;
   const results = await fetchApi(url);
   const filteredResults = await filterData(results); // Await the promise resolution
   console.log(`Filtered result by ID: ${JSON.stringify(filteredResults[0])}`); // Log the filtered result by ID

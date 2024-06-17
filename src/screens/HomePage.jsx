@@ -14,7 +14,6 @@ import { getCutoffDate } from "../utilities/utilities";
 import Loading from "../components/Loading/Loading";
 import CustomerReviews from "../components/CustomerReviews/CustomerReviews";
 
-
 const MAX_ITEMS_PER_LOAD = 3;
 
 const HomePage = () => {
@@ -23,7 +22,6 @@ const HomePage = () => {
   const [visibleCount, setVisibleCount] = useState(MAX_ITEMS_PER_LOAD);
   const [newListingsInitial, setNewListingsInitial] = useState(null);
 
- 
   const {
     isLoading,
     isError,
@@ -31,28 +29,27 @@ const HomePage = () => {
     isFetching,
     data: listings,
   } = useBoatListings();
+  console.log(listings);
 
- useEffect(() => {
-   if (listings) {
-     const cutoffDate = getCutoffDate();
-     const filteredListings = listings.filter((item) => {
-       const itemDate = new Date(item.ItemReceivedDate);
-       return itemDate > cutoffDate && item.SalesStatus === "Active";
-     });
-     setNewListings(filteredListings);
+  useEffect(() => {
+    if (listings) {
+      const cutoffDate = getCutoffDate();
+      const filteredListings = listings.filter((item) => {
+        const itemDate = new Date(item.ItemReceivedDate);
+        return itemDate > cutoffDate && item.SalesStatus === "Active";
+      });
+      setNewListings(filteredListings);
 
-     // Update the initial displayed listings
-     const initialLoad = filteredListings.slice(0, visibleCount);
-     setNewListingsInitial(initialLoad);
-   }
- }, [listings, visibleCount]);
+      // Update the initial displayed listings
+      const initialLoad = filteredListings.slice(0, visibleCount);
+      setNewListingsInitial(initialLoad);
+    }
+  }, [listings, visibleCount]);
 
- // Function to load more listings
- const loadMore = () => {
-   setVisibleCount((prev) => (newListings.length)
-   );
- };
-
+  // Function to load more listings
+  const loadMore = () => {
+    setVisibleCount((prev) => newListings.length);
+  };
 
   return (
     <main className="homePage">
@@ -213,7 +210,7 @@ const HomePage = () => {
 
       <div className="wrapper">
         <section className="homePage__reviews">
-         <CustomerReviews />
+          <CustomerReviews />
         </section>
       </div>
 
