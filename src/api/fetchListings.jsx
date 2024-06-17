@@ -5,12 +5,13 @@ const apiKey = import.meta.env.VITE_REACT_APP_API_KEY;
 // console.log(apiBaseUrl)
 
 const fetchApi = async (url) => {
+  console.log(`Fetching data from URL: ${url}`); //
   const response = await fetch(`/api/proxy?url=${encodeURIComponent(url)}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch: ${response.statusText}`);
   }
   const data = await response.json();
-  console.log(data);
+  console.log(`Received data: ${JSON.stringify(data)}`);
   return data.results;
 };
 
@@ -121,7 +122,7 @@ const filterData = async (results) => {
     })
   );
 
-  // console.log(filteredData);
+  console.log(`Filtered data: ${JSON.stringify(filteredData)}`); 
   return filteredData;
 
   //convert from png files to webp files
@@ -165,7 +166,8 @@ const fetchBoatListingById = async (id) => {
   const url = `https://api.boats.com/inventory/search?key=${apiKey}&DocumentID=${id}`;
   const results = await fetchApi(url);
   const filteredResults = await filterData(results); // Await the promise resolution
-  console.log(filteredResults[0]);
+  console.log(`Filtered result by ID: ${JSON.stringify(filteredResults[0])}`); // Log the filtered result by ID
+
   return filteredResults[0];
 };
 
